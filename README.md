@@ -1,2 +1,5 @@
-# cibensum
-Web application to watch your eating habits and more.
+# Cibensum
+Fooddiary connected with disease-specific symptoms. Main purpose is to find out, which symptoms co-occur with specific food.
+
+# Technology
+This project uses the Spring framework.
