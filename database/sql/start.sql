@@ -19,7 +19,8 @@ CREATE TABLE `authorities` (
   `username` varchar(50) NOT NULL,
   `authority` varchar(50) NOT NULL,
   UNIQUE KEY `authorities_idx_1` (`username`,`authority`),
-  CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
+  CONSTRAINT `authorities_ibfk_1`
+    FOREIGN KEY (`username`) REFERENCES `users` (`username`)
 ) ENGINE=InnoDB;
 
 --
@@ -42,7 +43,7 @@ CREATE TABLE `ingredient` (
 ) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `dish`;
-CREATE TABLE dish (
+CREATE TABLE `dish` (
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   `public` TINYINT(1) NOT NULL,
@@ -64,7 +65,7 @@ CREATE TABLE `dish_ingredient` (
     FOREIGN KEY (`id_dish`) REFERENCES `dish` (`id`)
       ON DELETE CASCADE ON UPDATE RESTRICT,
     FOREIGN KEY (`id_ingredient`) REFERENCES `ingredient` (`id`)
-ON DELETE CASCADE ON UPDATE RESTRICT
+      ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `day_entry`;
@@ -85,15 +86,15 @@ DROP TABLE IF EXISTS `day_entry_dish`;
 CREATE TABLE `day_entry_dish` (
    `id_day_entry` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
    `id_dish` INT(11) UNSIGNED NOT NULL,
-   `time_recorded` TIME,
+   `time_recorded` TIME NOT NULL,
    `quantity_ingredient` INT(5) UNSIGNED,
    `unit` VARCHAR(10),
    PRIMARY KEY (`id_day_entry`, `id_dish`),
    CONSTRAINT `fk_day_entry_dish`
      FOREIGN KEY (`id_day_entry`) REFERENCES `day_entry` (`id`)
        ON DELETE CASCADE ON UPDATE RESTRICT,
-   FOREIGN KEY (`id_dish`) REFERENCES `dish` (`id`)
-     ON DELETE SET NULL ON UPDATE RESTRICT
+     FOREIGN KEY (`id_dish`) REFERENCES `dish` (`id`)
+       ON DELETE CASCADE ON UPDATE RESTRICT # set null -> standard entry?
 ) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `symptom_name`;
@@ -113,9 +114,9 @@ CREATE TABLE `symptom` (
   `id_symptom_name` INT(11) UNSIGNED NOT NULL,
   `id_day_entry` INT(11) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-    CONSTRAINT `fk_symptom_name`
-      FOREIGN KEY (`id_symptom_name`) REFERENCES `symptom_name` (`id`)
-  ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_symptom_name`
+    FOREIGN KEY (`id_symptom_name`) REFERENCES `symptom_name` (`id`)
+      ON DELETE RESTRICT ON UPDATE RESTRICT,
     FOREIGN KEY (`id_day_entry`) REFERENCES `day_entry` (`id`)
       ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB;
