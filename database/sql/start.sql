@@ -38,7 +38,7 @@ DROP TABLE IF EXISTS `ingredient`;
 CREATE TABLE `ingredient` (
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
-  `public` TINYINT(1) NOT NULL,
+  `public_view` TINYINT(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
@@ -46,7 +46,7 @@ DROP TABLE IF EXISTS `dish`;
 CREATE TABLE `dish` (
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
-  `public` TINYINT(1) NOT NULL,
+  `public_view` TINYINT(1) NOT NULL,
   `id_anonymous_comment` INT(11) UNSIGNED,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_anonymous_comment_dish`
@@ -56,11 +56,12 @@ CREATE TABLE `dish` (
 
 DROP TABLE IF EXISTS `dish_ingredient`;
 CREATE TABLE `dish_ingredient` (
-  `id_dish` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_dish` INT(11) UNSIGNED NOT NULL,
   `id_ingredient` INT(11) UNSIGNED NOT NULL,
   `quantity_ingredient` INT(5) UNSIGNED,
   `unit` VARCHAR(10),
-  PRIMARY KEY (`id_dish`, `id_ingredient`),
+  PRIMARY KEY (`id`),
   CONSTRAINT `fk_dish_ingredient`
     FOREIGN KEY (`id_dish`) REFERENCES `dish` (`id`)
       ON DELETE CASCADE ON UPDATE RESTRICT,
@@ -84,24 +85,25 @@ CREATE TABLE `day_entry` (
 
 DROP TABLE IF EXISTS `day_entry_dish`;
 CREATE TABLE `day_entry_dish` (
-   `id_day_entry` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-   `id_dish` INT(11) UNSIGNED NOT NULL,
-   `time_recorded` TIME NOT NULL,
-   `quantity_ingredient` INT(5) UNSIGNED,
-   `unit` VARCHAR(10),
-   PRIMARY KEY (`id_day_entry`, `id_dish`),
-   CONSTRAINT `fk_day_entry_dish`
-     FOREIGN KEY (`id_day_entry`) REFERENCES `day_entry` (`id`)
-       ON DELETE CASCADE ON UPDATE RESTRICT,
-     FOREIGN KEY (`id_dish`) REFERENCES `dish` (`id`)
-       ON DELETE CASCADE ON UPDATE RESTRICT # set null -> standard entry?
+  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_day_entry` INT(11) UNSIGNED NOT NULL,
+  `id_dish` INT(11) UNSIGNED, # NULL -> standard entry
+  `time_recorded` TIME NOT NULL,
+  `quantity_ingredient` INT(5) UNSIGNED,
+  `unit` VARCHAR(10),
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_day_entry_dish`
+   FOREIGN KEY (`id_day_entry`) REFERENCES `day_entry` (`id`)
+     ON DELETE CASCADE ON UPDATE RESTRICT,
+   FOREIGN KEY (`id_dish`) REFERENCES `dish` (`id`)
+     ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `symptom_name`;
 CREATE TABLE `symptom_name` (
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30),
-  `public` TINYINT(1) NOT NULL,
+  `public_view` TINYINT(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
