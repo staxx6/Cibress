@@ -1,8 +1,12 @@
 package com.datpixelstudio.cibress.dto;
 
+import com.datpixelstudio.cibress.validation.PasswordMatches;
+import com.datpixelstudio.cibress.validation.ValidEmail;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+@PasswordMatches
 public class UserDto {
 
     @NotNull
@@ -18,6 +22,7 @@ public class UserDto {
     private String password;
     private String matchingPassword;
 
+    @ValidEmail
     @NotNull
     @NotEmpty
     private String email;

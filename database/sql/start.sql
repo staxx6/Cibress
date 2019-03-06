@@ -14,6 +14,16 @@ CREATE TABLE `users` (
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB;
 
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` char(68) NOT NULL,
+  `role` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE (`username`)
+) ENGINE=InnoDB;
+
 DROP TABLE IF EXISTS `authorities`;
 CREATE TABLE `authorities` (
   `username` varchar(50) NOT NULL,
@@ -123,3 +133,18 @@ CREATE TABLE `symptom` (
       ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB;
 
+--
+-- Playground
+--
+
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE `message` (
+  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_user` INT(11) UNSIGNED NOT NULL,
+  `text` VARCHAR(5000) NOT NULL,
+  `title` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_message_user`
+    FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
+      ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE=InnoDB;
