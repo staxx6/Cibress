@@ -2,7 +2,7 @@ package com.datpixelstudio.cibress.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -10,10 +10,10 @@ import java.util.Objects;
 public class DayEntry {
     private int id;
     private Date entryRecord;
-    private Users usersByUsername;
-    private AnonymousComment anonymousCommentByIdAnonymousComment;
-    private Collection<DayEntryDish> dayEntryDishesById;
-    private Collection<Symptom> symptomsById;
+    private User user;
+    private AnonymousComment anonymousComment;
+    private List<DayEntryDish> dayEntryDishes;
+    private List<Symptom> symptoms;
 
     @Id
     @Column(name = "id")
@@ -23,6 +23,16 @@ public class DayEntry {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "id_user", referencedColumnName = "id")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Basic
@@ -36,41 +46,31 @@ public class DayEntry {
     }
 
     @ManyToOne
-    @JoinColumn(name = "username", referencedColumnName = "username", nullable = false)
-    public Users getUsersByUsername() {
-        return usersByUsername;
-    }
-
-    public void setUsersByUsername(Users usersByUsername) {
-        this.usersByUsername = usersByUsername;
-    }
-
-    @ManyToOne
     @JoinColumn(name = "id_anonymous_comment", referencedColumnName = "id")
-    public AnonymousComment getAnonymousCommentByIdAnonymousComment() {
-        return anonymousCommentByIdAnonymousComment;
+    public AnonymousComment getAnonymousComment() {
+        return anonymousComment;
     }
 
-    public void setAnonymousCommentByIdAnonymousComment(AnonymousComment anonymousCommentByIdAnonymousComment) {
-        this.anonymousCommentByIdAnonymousComment = anonymousCommentByIdAnonymousComment;
-    }
-
-    @OneToMany(mappedBy = "dayEntryByIdDayEntry")
-    public Collection<DayEntryDish> getDayEntryDishesById() {
-        return dayEntryDishesById;
-    }
-
-    public void setDayEntryDishesById(Collection<DayEntryDish> dayEntryDishesById) {
-        this.dayEntryDishesById = dayEntryDishesById;
+    public void setAnonymousComment(AnonymousComment anonymousCommentByIdAnonymousComment) {
+        this.anonymousComment = anonymousCommentByIdAnonymousComment;
     }
 
     @OneToMany(mappedBy = "dayEntryByIdDayEntry")
-    public Collection<Symptom> getSymptomsById() {
-        return symptomsById;
+    public List<DayEntryDish> getDayEntryDishes() {
+        return dayEntryDishes;
     }
 
-    public void setSymptomsById(Collection<Symptom> symptomsById) {
-        this.symptomsById = symptomsById;
+    public void setDayEntryDishes(List<DayEntryDish> dayEntryDishesById) {
+        this.dayEntryDishes = dayEntryDishesById;
+    }
+
+    @OneToMany(mappedBy = "dayEntryByIdDayEntry")
+    public List<Symptom> getSymptoms() {
+        return symptoms;
+    }
+
+    public void setSymptoms(List<Symptom> symptomsById) {
+        this.symptoms = symptomsById;
     }
 
     @Override

@@ -6,13 +6,13 @@ USE `cibress`;
 -- Users / Security
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-  `username` varchar(50) NOT NULL,
-  `password` char(68) NOT NULL,
-  `enabled` tinyint(1) NOT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=InnoDB;
+# DROP TABLE IF EXISTS `users`;
+# CREATE TABLE `users` (
+#   `username` varchar(50) NOT NULL,
+#   `password` char(68) NOT NULL,
+#   `enabled` tinyint(1) NOT NULL,
+#   PRIMARY KEY (`username`)
+# ) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
@@ -25,14 +25,14 @@ CREATE TABLE `user` (
   UNIQUE (`username`)
 ) ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS `authorities`;
-CREATE TABLE `authorities` (
-  `username` varchar(50) NOT NULL,
-  `authority` varchar(50) NOT NULL,
-  UNIQUE KEY `authorities_idx_1` (`username`,`authority`),
-  CONSTRAINT `authorities_ibfk_1`
-    FOREIGN KEY (`username`) REFERENCES `users` (`username`)
-) ENGINE=InnoDB;
+# DROP TABLE IF EXISTS `authorities`;
+# CREATE TABLE `authorities` (
+#   `username` varchar(50) NOT NULL,
+#   `authority` varchar(50) NOT NULL,
+#   UNIQUE KEY `authorities_idx_1` (`username`,`authority`),
+#   CONSTRAINT `authorities_ibfk_1`
+#     FOREIGN KEY (`username`) REFERENCES `users` (`username`)
+# ) ENGINE=InnoDB;
 
 --
 -- Application itself
@@ -83,14 +83,14 @@ CREATE TABLE `dish_ingredient` (
 DROP TABLE IF EXISTS `day_entry`;
 CREATE TABLE `day_entry` (
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(50) NOT NULL,
+  `id_user` INT(11) UNSIGNED NOT NULL,
   `entry_record` DATE NOT NULL,
   `id_anonymous_comment` INT(11) UNSIGNED,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_anonymous_comment_day`
     FOREIGN KEY (`id_anonymous_comment`) REFERENCES `anonymous_comment` (`id`)
       ON DELETE NO ACTION ON UPDATE NO ACTION,
-    FOREIGN KEY (`username`) REFERENCES `users` (`username`)
+    FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
       ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB;
 

@@ -46,7 +46,7 @@ public class AnonymousComment {
         return Objects.hash(id, text);
     }
 
-    @OneToMany(mappedBy = "anonymousCommentByIdAnonymousComment")
+    @OneToMany(mappedBy = "anonymousComment")
     public Collection<DayEntry> getDayEntriesById() {
         return dayEntriesById;
     }
