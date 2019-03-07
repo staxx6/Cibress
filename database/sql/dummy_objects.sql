@@ -7,8 +7,8 @@ DELETE FROM ingredient;
 DELETE FROM message;
 DELETE FROM user;
 
-INSERT INTO user VALUES (1, "root", "{noop}root", "ROLE_ADMIN");
-INSERT INTO user VALUES (2, "staxx6", "{noop}staxx6", "ROLE_USER");
+INSERT INTO user VALUES (1, "root", "{noop}root", "root@email.de", "ROLE_ADMIN");
+INSERT INTO user VALUES (2, "staxx6", "{noop}staxx6", "staxx@hotmail.de", "ROLE_USER");
 
 INSERT INTO ingredient VALUES (1, "Apfel", "0");
 INSERT INTO ingredient VALUES (2, "Birne", "0");

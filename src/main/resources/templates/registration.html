@@ -11,7 +11,7 @@
     <p th:text="${user.firstName}"></p>
     <p th:text="'Hello World!'"></p>
 
-    <form action="/" th:object="${user}" method="post" enctype="utf8">
+    <form th:action="@{/registration}" th:object="${user}" method="post" enctype="utf8">
         <p>
             <label th:text="#{label.user.firstName}">first</label>
             <input type="text" th:field="*{firstName}"/>

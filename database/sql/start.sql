@@ -19,6 +19,7 @@ CREATE TABLE `user` (
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` char(68) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `role` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE (`username`)

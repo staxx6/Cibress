@@ -2,6 +2,7 @@ package com.datpixelstudio.cibress.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.websocket.ClientEndpoint;
 
 @Entity
 @Table(name="user")
@@ -13,15 +14,19 @@ public class User {
     private long id;
 
     @Column(name = "username", unique = true)
-    @NotEmpty(message = "username is required")
+//    @NotEmpty(message = "username is required")
     private String username;
 
     @Column(name = "password")
-    @NotEmpty(message = "password is required")
+//    @NotEmpty(message = "password is required")
     private String password;
 
+    @Column(name = "email")
+//    @NotEmpty(message = "email is required")
+    private String email;
+
     @Column(name = "role")
-    @NotEmpty(message = "role is required")
+//    @NotEmpty(message = "role is required")
     private String role;
 
     public User() {}
@@ -31,6 +36,14 @@ public class User {
         this.username = username;
         this.password = password;
         this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getRole() {
