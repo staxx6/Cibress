@@ -1,6 +1,7 @@
 package com.datpixelstudio.cibress.controller;
 
 import com.datpixelstudio.cibress.dto.UserDto;
+import com.datpixelstudio.cibress.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,7 +28,8 @@ public class UserController {
             @ModelAttribute("user") @Valid UserDto accountDto,
             BindingResult result) {
 
-//        User
+        User registered = new User();
+        // https://www.baeldung.com/registration-with-spring-mvc-and-spring-security
 
         return null;
     }

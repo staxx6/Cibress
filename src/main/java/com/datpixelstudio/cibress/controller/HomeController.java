@@ -49,4 +49,11 @@ public class HomeController {
         model.addAttribute("message", message);
         return "viewMessage";
     }
+
+//    @GetMapping("/privateMessage/{id}")
+//    public String viewPrivateMessage(@PathVariable Long id, Model model) {
+//        Message message = messageRepository.findOne(id);
+//        model.addAttribute("message", message);
+//        return "viewMessage";
+//    }
 }

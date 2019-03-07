@@ -24,7 +24,7 @@ public class User {
     @NotEmpty(message = "role is required")
     private String role;
 
-    protected User() {}
+    public User() {}
 
     public User(long id, String username, String password, String role) {
         this.id = id;

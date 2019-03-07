@@ -1,3 +1,5 @@
+USE cibress;
+
 DELETE FROM dish_ingredient;
 DELETE FROM dish;
 DELETE FROM anonymous_comment;
