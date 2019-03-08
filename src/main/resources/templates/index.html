@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
-<head th:replace="fragments/headerAndNav :: header" />
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head(title='Cibress - Home')">
+</head>
 <body>
-    <div th:replace="fragments/headerAndNav :: navbar" />
-    <div class="container">
-        You can only see this, if you are logged in!
-    </div>
+    <h1>Cibress</h1>
 </body>
 </html>
