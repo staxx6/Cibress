@@ -5,23 +5,23 @@ import com.datpixelstudio.cibress.entity.DayEntryDish;
 import com.datpixelstudio.cibress.entity.Symptom;
 
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class DayEntryDto {
 
     @NotNull
-    private Date date;
+    private LocalDate date;
 
     private List<DayEntryDish> dayEntryDishes;
     private List<Symptom> symptoms;
     private AnonymousComment anonymousComment;
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

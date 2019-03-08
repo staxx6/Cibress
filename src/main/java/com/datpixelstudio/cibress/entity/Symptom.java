@@ -2,12 +2,13 @@ package com.datpixelstudio.cibress.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
 public class Symptom {
     private int id;
-    private Timestamp recorded;
+    private LocalDateTime recorded;
     private String text;
     private byte intensity;
     private SymptomName symptomNameByIdSymptomName;
@@ -25,11 +26,11 @@ public class Symptom {
 
     @Basic
     @Column(name = "recorded")
-    public Timestamp getRecorded() {
+    public LocalDateTime getRecorded() {
         return recorded;
     }
 
-    public void setRecorded(Timestamp recorded) {
+    public void setRecorded(LocalDateTime recorded) {
         this.recorded = recorded;
     }
 

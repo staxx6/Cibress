@@ -5,8 +5,9 @@
 <div th:replace="fragments/headerAndNav :: navbar" />
 <div class="container">
     <p th:text="${dayEntry.date}"></p>
-    <ul th:each="dishes : ${dayEntry.dayEntryDishes}">
-        <li th:text="${dishes.unit}"></li>
+    <ul th:each="dishEntry : ${dayEntry.dayEntryDishes}">
+        <li th:text="${dishEntry.dish.name}"></li>
+        <li th:text="${dishEntry.unit}"></li>
     </ul>
     <ul th:each="symptoms : ${dayEntry.symptoms}">
         <li th:text="${symptoms.text}"></li>

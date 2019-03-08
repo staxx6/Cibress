@@ -2,6 +2,7 @@ package com.datpixelstudio.cibress.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,7 +10,7 @@ import java.util.Objects;
 @Table(name = "day_entry", schema = "cibress", catalog = "")
 public class DayEntry {
     private int id;
-    private Date entryRecord;
+    private LocalDate entryRecord;
     private User user;
     private AnonymousComment anonymousComment;
     private List<DayEntryDish> dayEntryDishes;
@@ -37,11 +38,11 @@ public class DayEntry {
 
     @Basic
     @Column(name = "entry_record")
-    public Date getEntryRecord() {
+    public LocalDate getEntryRecord() {
         return entryRecord;
     }
 
-    public void setEntryRecord(Date entryRecord) {
+    public void setEntryRecord(LocalDate entryRecord) {
         this.entryRecord = entryRecord;
     }
 

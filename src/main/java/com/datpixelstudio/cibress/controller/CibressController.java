@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Controller
 public class CibressController {
@@ -21,14 +21,23 @@ public class CibressController {
     @GetMapping("/today")
     public String getTodayDayEntry(@AuthenticationPrincipal User user, Model model) {
 
-        DayEntryDto dayEntryDto = dayEntryService.findByDate(user, new Date());
+        DayEntryDto dayEntryDto = dayEntryService.findByDate(user, LocalDate.now());
         model.addAttribute("dayEntry", dayEntryDto);
 
         return "main";
     }
 
-    @GetMapping("/day/{id}")
-    public String getDayEntry(@PathVariable Long id, Model model) {
-        return null;
+    /*
+        Example: http://localhost:8080/day?year=2019&month=3&day=7
+     */
+    @GetMapping("/day")
+    public String getDayEntry(int year, int month, int day,
+              @AuthenticationPrincipal User user, Model model) {
+
+        LocalDate date = LocalDate.of(year, month, day);
+        DayEntryDto dayEntryDto = dayEntryService.findByDate(user, date);
+        model.addAttribute("dayEntry", dayEntryDto);
+
+        return "main";
     }
 }

@@ -2,17 +2,18 @@ package com.datpixelstudio.cibress.entity;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Objects;
 
 @Entity
 @Table(name = "day_entry_dish", schema = "cibress", catalog = "")
 public class DayEntryDish {
     private int id;
-    private Time timeRecorded;
+    private LocalTime timeRecorded;
     private Integer quantityIngredient;
     private String unit;
     private DayEntry dayEntryByIdDayEntry;
-    private Dish dishByIdDish;
+    private Dish dish;
 
     @Id
     @Column(name = "id")
@@ -26,11 +27,11 @@ public class DayEntryDish {
 
     @Basic
     @Column(name = "time_recorded")
-    public Time getTimeRecorded() {
+    public LocalTime getTimeRecorded() {
         return timeRecorded;
     }
 
-    public void setTimeRecorded(Time timeRecorded) {
+    public void setTimeRecorded(LocalTime timeRecorded) {
         this.timeRecorded = timeRecorded;
     }
 
@@ -66,12 +67,12 @@ public class DayEntryDish {
 
     @ManyToOne
     @JoinColumn(name = "id_dish", referencedColumnName = "id")
-    public Dish getDishByIdDish() {
-        return dishByIdDish;
+    public Dish getDish() {
+        return dish;
     }
 
-    public void setDishByIdDish(Dish dishByIdDish) {
-        this.dishByIdDish = dishByIdDish;
+    public void setDish(Dish dishByIdDish) {
+        this.dish = dishByIdDish;
     }
 
     @Override

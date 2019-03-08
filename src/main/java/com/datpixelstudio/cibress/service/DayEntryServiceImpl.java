@@ -8,7 +8,7 @@ import com.datpixelstudio.cibress.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Service
 public class DayEntryServiceImpl implements DayEntryService {
@@ -17,14 +17,16 @@ public class DayEntryServiceImpl implements DayEntryService {
     DayEntryRepository dayEntryRepository;
 
     @Override
-    public DayEntryDto findByDate(User user, Date date) {
+    public DayEntryDto findByDate(User user, LocalDate date) {
 
         DayEntryDto dayEntryDto = new DayEntryDto();
         DayEntry dayEntry = dayEntryRepository.findByUserAndEntryRecord(user, date);
 
         if(dayEntry == null) {
             dayEntryDto.setDate(date);
-            dayEntry.setAnonymousComment();
+            AnonymousComment cmt = new AnonymousComment();
+            cmt.setText("A comment for the dish");
+            dayEntryDto.setAnonymousComment(cmt);
             return dayEntryDto;
         }
 

@@ -44,7 +44,7 @@ public class Dish {
         this.publicView = publicView;
     }
 
-    @OneToMany(mappedBy = "dishByIdDish")
+    @OneToMany(mappedBy = "dish")
     public Collection<DayEntryDish> getDayEntryDishesById() {
         return dayEntryDishesById;
     }

@@ -3,8 +3,8 @@ package com.datpixelstudio.cibress.service;
 import com.datpixelstudio.cibress.dto.DayEntryDto;
 import com.datpixelstudio.cibress.entity.User;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public interface DayEntryService {
-    DayEntryDto findByDate(User user, Date day);
+    DayEntryDto findByDate(User user, LocalDate day);
 }
