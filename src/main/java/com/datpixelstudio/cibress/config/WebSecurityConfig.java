@@ -32,6 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/home").permitAll()
                 .antMatchers("/css/**").permitAll()
+                .antMatchers("/img/**").permitAll()
                 .antMatchers("/noSecurity").permitAll() // ant build system => ant-style path patterns
                 .antMatchers("/registration").permitAll()
                     .antMatchers(HttpMethod.POST, "/registration").permitAll()

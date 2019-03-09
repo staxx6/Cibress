@@ -1,14 +1,19 @@
 package com.datpixelstudio.cibress.controller;
 
 import com.datpixelstudio.cibress.dao.MessageRepository;
+import com.datpixelstudio.cibress.dto.UserDto;
 import com.datpixelstudio.cibress.entity.User;
 import com.datpixelstudio.cibress.playground.Message;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import javax.validation.Valid;
 
 @Controller
 public class HomeController {
@@ -17,7 +22,17 @@ public class HomeController {
     private MessageRepository messageRepository;
 
     @GetMapping("/")
-    public String home() {
+    public String home(Model model) {
+        UserDto userDto = new UserDto();
+
+        // TODO: REMOVE TEST DATA
+        userDto.setFirstName("first");
+        userDto.setLastName("last");
+        userDto.setEmail("first@first.com");
+        userDto.setPassword("first");
+        userDto.setMatchingPassword("first");
+
+        model.addAttribute("user", userDto);
         return "index";
     }
 
