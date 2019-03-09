@@ -1,23 +1,108 @@
 *,
-*::before,
-*::after {
+*::after,
+*::before {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
 }
 
 html {
-  box-sizing: border-box;
   font-size: 62.5%;
-}
-@media only screen and (max-width: 75em) {
-  html {
-    font-size: 50%;
-  }
+  /* default 16px -> now 10px; better for user changes */
 }
 
 body {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  color: #000;
+}
+
+.u-center-text {
+  text-align: center !important;
+}
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem !important;
+}
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem !important;
+}
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem !important;
+}
+
+.u-margin-top-small {
+  margin-bottom: 1.5rem !important;
+}
+
+.u-margin-top-medium {
+  margin-bottom: 4rem !important;
+}
+
+.u-margin-top-big {
+  margin-bottom: 8rem !important;
+}
+
+.u-margin-top-huge {
+  margin-bottom: 10rem !important;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+.btn:hover::after {
+  transform: scaleX(1.5) scaleY(1.6);
+  opacity: 0;
+}
+.footer {
+  background-color: cornflowerblue;
+}
+
+.container--index {
+  display: grid;
+  grid-template-rows: 10vh 90vh min-content;
+}
+
+.header {
   background-color: #d63211;
+  display: grid;
+  grid-template-columns: minmax(10px, 1fr) minmax(10rem, 20vw) minmax(1rem, 20vw) min-content minmax(1rem, 20vw) min-content minmax(10px, 1fr);
+  align-items: center;
+}
+.header__logo {
+  grid-column: 2/span 1;
+  width: 100%;
+}
+.header__login {
+  grid-column: 4/span 1;
+}
+.header__login-form {
+  display: flex;
+}
+.header__registration {
+  grid-column: 6/span 1;
+}
+
+.main {
+  margin-top: 10px;
+}
+
+.popup-reg {
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  background-color: chartreuse;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 /*# sourceMappingURL=main.css.map */

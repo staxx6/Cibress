@@ -1,0 +1,26 @@
+@mixin absCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+// MEDIA QUERY MANAGER (exp 1200px / 16 = 75em)
+@mixin respond($breakpoint) {
+    @if $breakpoint == smallest {
+        @media only screen and (max-width: 37.5em) { @content }; // 600px
+    }
+    @if $breakpoint == small {
+        @media only screen and (max-width: 56.25em) { @content }; // 900px
+    }
+    @if $breakpoint == medium {
+        @media only screen and (max-width: 75em) { @content }; // 1200px
+    }
+    @if $breakpoint == large {
+        @media only screen and (min-width: 112.5em) { @content }; // 1800px
+    }
+    @if $breakpoint == largest {
+        @media only screen and (min-width: 125em) { @content }; // 2000px
+    }
+}

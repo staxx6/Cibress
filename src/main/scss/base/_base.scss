@@ -1,0 +1,30 @@
+*, 
+*::after, 
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    // This defines what 1rem is
+    font-size: 62.5%; /* default 16px -> now 10px; better for user changes */
+
+    // @include respond(small) {
+    //     font-size: 56.25%; 
+    // }
+}
+
+body {
+    box-sizing: border-box;
+    //padding: 3rem;
+
+    // @include respond(medium) {
+    //     padding: 0;
+    // }
+}
+
+::selection {
+    // background-color: $color-primary;
+    // color: $color-white;
+}

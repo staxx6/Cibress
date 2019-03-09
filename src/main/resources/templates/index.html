@@ -3,52 +3,56 @@
 <head th:replace="fragments/head :: head(title='Cibress - Home')">
 </head>
 <body>
-    <header class="header">
-        <img th:src="@{/img/logo.png}" alt="login">
-        <div class="header__login">
-            <form action="#" method="post">
-                <input class="header__login-username" type="text" placeholder="username"/>
-                <input class="header__login-password" type="password" placeholder="password"/>
-                <button class="header__login-button" type="submit">Login</button>
-            </form>
+    <div class="container--index">
+
+        <header class="header">
+            <img class="header__logo" th:src="@{/img/logo.png}" alt="login">
+            <div class="header__login">
+                <form class="header__login-form" action="#" method="post">
+                    <input class="header__login-username" type="text" placeholder="username"/>
+                    <input class="header__login-password" type="password" placeholder="password"/>
+                    <button class="header__login-button" type="submit">Login</button>
+                </form>
+            </div>
+            <div class="header__registration">
+                <input class="header__registration-checkbox" type="checkbox" id="reg-toggle">
+                <label class="header__registration-button" for="reg-toggle"></label>
+            </div>
+        </header>
+
+        <main class="main">
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </main>
+
+        <!-- TODO fragment -->
+        <footer class="footer">
+            <ul class="footer__nav">
+                <li class="footer__nav-item"><a href="#" class="footer__nav-link">More placeholder</a></li>
+            </ul>
+            <p class="copyright-text">
+                &copy; Copyright 2019 by Simon Oczadly
+            </p>
+        </footer>
+
+        <!--TODO Form not finished! OLD DATA-->
+        <div class="popup-reg" id="popup">
+            <div class="popup-reg__content">
+                <a href="#" class="popup-reg__close">&times;</a>
+                <form action="#" method="post" th:object="${user}">
+                    <input type="text" th:field="*{firstName}" placeholder="Username"/>
+                    <!--<p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>-->
+                    <input type="text" th:field="*{email}" placeholder="Email"/>
+                    <!--<p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>-->
+                    <input type="text" th:field="*{password}" placeholder="Password"/>
+                    <!--<p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>-->
+                    <input type="text" th:field="*{matchingPassword}" placeholder="Repeat Password"/>
+                    <!--<p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>-->
+
+                    <button class="header__register-button" type="submit">Sign up</button>
+                </form>
+            </div>
         </div>
-        <div class="header__registration">
-            <input class="header__registration-checkbox" type="checkbox" id="reg-toggle">
-            <label class="header__registration-button" for="reg-toggle"></label>
-        </div>
-    </header>
 
-    <main class="main">
-
-    </main>
-
-    <!-- TODO fragment -->
-    <footer class="footer">
-        <ul class="footer__nav">
-            <li class="footer__nav-item"><a href="#" class="footer__nav-link">More placeholder</a></li>
-        </ul>
-        <p class="copyright-text">
-            &copy; Copyright 2019 by Simon Oczadly
-        </p>
-    </footer>
-
-    <!--TODO Form not finished! OLD DATA-->
-    <div class="popup-reg" id="popup">
-        <div class="popup-reg__content">
-            <a href="#" class="popup-reg__close">&times;</a>
-            <form action="#" method="post" th:object="${user}">
-                <input type="text" th:field="*{firstName}" placeholder="Username"/>
-                <!--<p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>-->
-                <input type="text" th:field="*{email}" placeholder="Email"/>
-                <!--<p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>-->
-                <input type="text" th:field="*{password}" placeholder="Password"/>
-                <!--<p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>-->
-                <input type="text" th:field="*{matchingPassword}" placeholder="Repeat Password"/>
-                <!--<p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>-->
-
-                <button class="header__register-button" type="submit">Sign up</button>
-            </form>
-        </div>
     </div>
 </body>
 </html>
