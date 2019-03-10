@@ -63,7 +63,17 @@ body {
   opacity: 0;
 }
 .footer {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
   background-color: cornflowerblue;
+}
+.footer__nav .footer__logo .footer__copyright-text {
+  padding: 8px;
+}
+.footer__logo {
+  width: 25rem;
 }
 
 .container--index {

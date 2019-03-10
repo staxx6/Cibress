@@ -1,6 +1,8 @@
 .container--index {
     display: grid;
     grid-template-rows: 10vh 90vh min-content;
+    //justify-items: center;
+    //align-items: center;
 }
 
 .header {

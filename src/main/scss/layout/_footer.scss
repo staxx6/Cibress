@@ -1,3 +1,23 @@
 .footer {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+
     background-color: cornflowerblue;
+
+
+    &__ {
+        &nav &logo &copyright-text {
+            padding: 8px;
+        }
+    }
+
+    &__nav {
+    }
+
+    &__logo {
+        width: 25rem;
+
+    }
 }
