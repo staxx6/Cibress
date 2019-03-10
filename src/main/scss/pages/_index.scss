@@ -29,8 +29,19 @@
         }
 
         &-username {
-            //display: inline-block;
+            margin-right: 5px;
         }
+
+        &-password {
+            margin-right: 5px;
+        }
+    }
+
+    &__input {
+        border: none;
+        border-radius: 100px;
+        background-color: transparent;
+        padding: 3px 5px 3px 5px;
     }
 
     &__registration {

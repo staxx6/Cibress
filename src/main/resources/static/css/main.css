@@ -69,11 +69,14 @@ body {
   align-items: center;
   background-color: cornflowerblue;
 }
-.footer__nav .footer__logo .footer__copyright-text {
-  padding: 8px;
+.footer__nav, .footer__logo, .footer__copyright-text {
+  margin-top: 4rem;
 }
 .footer__logo {
   width: 25rem;
+}
+.footer__copyright-text {
+  margin-bottom: 2rem;
 }
 
 .container--index {
@@ -96,6 +99,18 @@ body {
 }
 .header__login-form {
   display: flex;
+}
+.header__login-username {
+  margin-right: 5px;
+}
+.header__login-password {
+  margin-right: 5px;
+}
+.header__input {
+  border: none;
+  border-radius: 100px;
+  background-color: transparent;
+  padding: 3px 5px 3px 5px;
 }
 .header__registration {
   grid-column: 6/span 1;

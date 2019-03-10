@@ -8,8 +8,8 @@
 
 
     &__ {
-        &nav &logo &copyright-text {
-            padding: 8px;
+        &nav, &logo, &copyright-text {
+            margin-top: 4rem;
         }
     }
 
@@ -18,6 +18,9 @@
 
     &__logo {
         width: 25rem;
+    }
 
+    &__copyright-text {
+        margin-bottom: 2rem;
     }
 }
