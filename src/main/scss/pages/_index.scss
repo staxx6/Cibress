@@ -54,9 +54,9 @@
         grid-column: 6 / span 1;
         margin-top: 10px;
 
-        &-checkbox {
-            display: none;
-        }
+        //&-checkbox {
+        //    display: none;
+        //}
     }
 }
 
@@ -90,13 +90,54 @@
 }
 
 .popup-reg {
-    z-index: 9999;
-    opacity: 0;
-    visibility: hidden;
-    background-color: chartreuse;
+    height: 100vh;
+    width: 100%;
     position: fixed;
     top: 0;
     left: 0;
+    background-color: rgba($color-black, .8);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s;
+
+    @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background-color: rgba($color-black, .3);
+    }
+
+    &__content {
+        @include absCenter;
+
+        background-color: white;
+        border-radius: 3px;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(.25);
+        width: 20vw;
+        min-width: 30rem;
+        //height: 45vh;
+        padding: 4rem;
+    }
+
+    &__form  {
+        display: flex;
+        flex-direction: column;
+        align-content: space-around;
+        color: $color-black;
+    }
+
+    &__label {
+        margin: 0 0 0.6rem 20px;
+    }
+
+    &__input {
+        margin-bottom: 2.5rem;
+    }
+
+    &__button {
+        margin-top: 3rem;
+    }
 
     //Open states
     &:target {
@@ -114,13 +155,16 @@
         &:visited {
             color: $color-grey-dark;
             position: absolute;
-            top: 2.5rem;
-            right: 2.5rem;
+            top: 2rem;
+            right: 2rem;
             font-size: 3rem;
             text-decoration: none;
             display: inline-block;
             transition: all .2s;
             line-height: 1;
+
+            padding: 0 0 1rem 1rem;
+
         }
 
         &:hover {

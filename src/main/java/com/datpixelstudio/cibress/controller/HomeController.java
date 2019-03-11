@@ -22,7 +22,10 @@ public class HomeController {
     private MessageRepository messageRepository;
 
     @GetMapping("/")
-    public String home(Model model) {
+    public String home(@AuthenticationPrincipal User user, Model model) {
+
+        System.out.println(user);
+
         UserDto userDto = new UserDto();
 
         // TODO: REMOVE TEST DATA

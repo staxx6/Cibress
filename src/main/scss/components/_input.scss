@@ -4,7 +4,7 @@
     background-color: rgba($color-grey-dark, 50%);
     padding: 4px 10px 3px 20px;
     font-family: "Roboto Medium";
-    border: solid rgba($color-white, 0.35) 2px;
+    border: solid rgba($color-white, 0.35) $border-size-bigger;
     transition: all .2s;
     color: $color-white;
     font-size: $font-size-big;
@@ -30,7 +30,7 @@
         //    transform: scaleX(1.5) scaleY(1.6);
         //    opacity: 0;
         //}
-        border: solid rgba($color-primary, 0.5) 2px;
+        border: solid $color-primary-light $border-size-bigger;
     }
 
 
@@ -39,6 +39,6 @@
         //box-shadow: inset 0 0 4px rgba($color-black, .5);
         //background-color: rgba($color-primary, 80%);
         //color: $color-white;
-        border: solid $color-primary 2px;
+        border: solid $color-primary $border-size-bigger;
     }
 }

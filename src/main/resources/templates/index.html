@@ -9,15 +9,14 @@
             <!--<img class="logo header__logo" th:src="@{/img/logo.png}" alt="logo">-->
             <span class="logo header__logo">Cibress</span>
             <div class="header__login">
-                <form class="header__login-form" action="#" method="post">
-                    <input class="input header__login-username header__input" type="text" placeholder="Username"/>
-                    <input class="input header__login-password header__input" type="password" placeholder="Password"/>
+                <form class="header__login-form" th:action="@{/login}" method="post" name="f">
+                    <input class="input header__login-username header__input" type="text" placeholder="Username" name="username"/>
+                    <input class="input header__login-password header__input" type="password" placeholder="Password" name="password"/>
                     <button class="btn header__login-btn" type="submit">Login</button>
                 </form>
             </div>
             <div class="header__registration">
-                <input class="header__registration-checkbox" type="checkbox" id="reg-toggle">
-                <label class="btn btn--primary header__registration-button" for="reg-toggle">Registration</label>
+                <a class ="btn btn--primary btn--primary--outline header__registration" href="#registration">Registration</a>
             </div>
         </header>
 
@@ -31,28 +30,33 @@
             <ul class="footer__nav">
                 <li class="footer__nav-item"><a href="#" class="footer__nav-link">More placeholder</a></li>
             </ul>
-            <img class="footer__logo" th:src="@{/img/logo.png}" alt="logo">
+            <!--<img class="footer__logo" th:src="@{/img/logo.png}" alt="logo">-->
+            <span class="logo footer__logo">Cibress</span>
             <p class="footer__copyright-text">
                 &copy; Copyright 2019 by Simon Oczadly
             </p>
         </footer>
 
         <!--TODO Form not finished! OLD DATA-->
-        <div class="popup-reg" id="popup">
+        <div class="popup-reg" id="registration">
             <div class="popup-reg__content">
-                <a href="#" class="popup-reg__close">&times;</a>
-                <form action="#" method="post" th:object="${user}">
-                    <input type="text" th:field="*{firstName}" placeholder="Username"/>
+                <form class="popup-reg__form" th:action="@{/registration}" method="post" th:object="${user}">
+                    <label class="popup-reg__label" for="username">Username: </label>
+                    <input class="input popup-reg__input" id="username" type="text" th:field="*{firstName}" placeholder=""/>
                     <!--<p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>-->
-                    <input type="text" th:field="*{email}" placeholder="Email"/>
+                    <label class="popup-reg__label" for="username">Email: </label>
+                    <input class="input popup-reg__input" id="email" type="text" th:field="*{email}" placeholder=""/>
                     <!--<p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>-->
-                    <input type="text" th:field="*{password}" placeholder="Password"/>
+                    <label class="popup-reg__label" for="password">Password: </label>
+                    <input class="input popup-reg__input" id="password" type="password" th:field="*{password}" placeholder=""/>
                     <!--<p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>-->
-                    <input type="text" th:field="*{matchingPassword}" placeholder="Repeat Password"/>
+                    <label class="popup-reg__label" for="matchingPassword">Repeat password:</label>
+                    <input class="input popup-reg__input" id="matchingPassword" type="password" th:field="*{matchingPassword}" placeholder=""/>
                     <!--<p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>-->
 
-                    <button class="header__register-button" type="submit">Sign up</button>
+                    <button class="btn btn--primary btn--primary--outline popup-reg__button" type="submit">Sign up</button>
                 </form>
+                <a href="#" class="popup-reg__close">&times;</a>
             </div>
         </div>
 

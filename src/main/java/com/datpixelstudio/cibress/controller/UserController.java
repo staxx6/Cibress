@@ -23,16 +23,16 @@ public class UserController {
 
     @GetMapping("/registration")
     public String registration( Model model) {
-        UserDto userDto = new UserDto();
-
-        // TODO: REMOVE TEST DATA
-        userDto.setFirstName("first");
-        userDto.setLastName("last");
-        userDto.setEmail("first@first.com");
-        userDto.setPassword("first");
-        userDto.setMatchingPassword("first");
-
-        model.addAttribute("user", userDto);
+//        UserDto userDto = new UserDto();
+//
+//        // TODO: REMOVE TEST DATA
+//        userDto.setFirstName("first");
+//        userDto.setLastName("last");
+//        userDto.setEmail("first@first.com");
+//        userDto.setPassword("first");
+//        userDto.setMatchingPassword("first");
+//
+//        model.addAttribute("user", userDto);
         return "registration";
     }
 
@@ -68,6 +68,7 @@ public class UserController {
 
     @GetMapping("/login")
     public String login() {
-        return "login";
+
+        return "index";
     }
 }

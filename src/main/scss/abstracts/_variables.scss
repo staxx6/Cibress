@@ -1,6 +1,6 @@
 // COLORS
 $color-primary: #d6400c;
-//$color-primary-light: hsl(111, 55%, 64%);
+$color-primary-light: #fc7546;
 //$color-primary-dark: #28b485;
 
 //$color-secondary: #ffb900;
@@ -24,3 +24,8 @@ $color-transparent: rgb(0, 0, 0, 0);
 // FONT
 $font-size-default: 1.6rem;
 $font-size-big: 1.8rem;
+
+// Input - Btn
+
+$border-size-normal: 2px;
+$border-size-bigger: 3px;

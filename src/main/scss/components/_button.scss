@@ -13,6 +13,7 @@
         background-color: rgba($color-grey-light, 75%);
         font-family: "Roboto Medium";
         font-size: $font-size-big;
+        outline: none;
 
 
         // // Change for the <button> element
@@ -25,6 +26,7 @@
         box-shadow: inset 0 0 3px rgba($color-black, .5);
         background-color: rgba($color-primary, 80%);
         color: $color-white;
+        outline: none;
 
         &::after {
             transform: scaleX(1.5) scaleY(1.6);
@@ -41,22 +43,37 @@
     }
 
     &--primary {
-        background-color: rgba($color-primary, 80%);
-        color: $color-white;
-        padding: 0.5rem 2rem 0.5rem;
-
-        &:hover {
-            box-shadow: inset 0 0 3px rgba($color-white, .5);
-            background-color: rgba($color-white, 80%);
-            color: $color-primary;
+        &,
+        &:link,
+        &:visited {
+            background-color: rgba($color-primary, 80%);
+            //background-color: green;
+            color: $color-white;
+            padding: 0.5rem 2rem 0.5rem;
         }
 
+        &:hover,
         &:active,
         &:focus {
             outline: none;
-            box-shadow: inset 0 0 4px rgba($color-white, .5);
             background-color: rgba($color-white, 80%);
             color: $color-primary;
+            box-shadow: none;
+        }
+    }
+
+    &--primary--outline {
+        &,
+        &:link,
+        &:visited {
+            border: solid 3px $color-transparent;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: $color-primary;
+            border: solid 3px $color-primary;
         }
     }
 }
