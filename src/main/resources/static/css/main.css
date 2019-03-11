@@ -16,10 +16,11 @@ body {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: "Roboto Medium", sans-serif;
   font-weight: 400;
-  line-height: 1;
-  color: #000;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  color: #fff;
 }
 
 .u-center-text {
@@ -54,20 +55,86 @@ body {
   margin-bottom: 10rem !important;
 }
 
+.btn, .btn:link, .btn:visited {
+  text-decoration: none;
+  padding: 0.5rem 2rem 0.5rem;
+  border-radius: 10rem;
+  transition: all 0.2s;
+  background-color: rgba(209, 209, 209, 0.75);
+  font-family: "Roboto Medium";
+  font-size: 1.8rem;
+  border: none;
+  cursor: pointer;
+}
 .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
+  background-color: rgba(214, 64, 12, 0.8);
+  color: #fff;
 }
 .btn:hover::after {
   transform: scaleX(1.5) scaleY(1.6);
   opacity: 0;
 }
+.btn:active, .btn:focus {
+  outline: none;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+  background-color: rgba(214, 64, 12, 0.8);
+  color: #fff;
+}
+.btn--primary {
+  background-color: rgba(214, 64, 12, 0.8);
+  color: #fff;
+  padding: 0.5rem 2rem 0.5rem;
+}
+.btn--primary:hover {
+  box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #d6400c;
+}
+.btn--primary:active, .btn--primary:focus {
+  outline: none;
+  box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #d6400c;
+}
+
+.logo {
+  font-family: "Lobster", cursive;
+  font-size: 10rem;
+  color: #fff;
+}
+
+.input {
+  border: none;
+  border-radius: 100px;
+  background-color: rgba(56, 56, 56, 0.5);
+  padding: 4px 10px 3px 20px;
+  font-family: "Roboto Medium";
+  border: solid rgba(255, 255, 255, 0.35) 2px;
+  transition: all 0.2s;
+  color: #fff;
+  font-size: 1.8rem;
+}
+.input::placeholder {
+  color: #fff;
+  opacity: 0.5;
+}
+.input:active, .input:focus, .input:hover {
+  outline: none;
+}
+.input:hover {
+  border: solid rgba(214, 64, 12, 0.5) 2px;
+}
+.input:active, .input:focus {
+  border: solid #d6400c 2px;
+}
+
 .footer {
   display: flex;
   flex-direction: column;
   justify-items: center;
   align-items: center;
-  background-color: cornflowerblue;
+  background-color: #383838;
 }
 .footer__nav, .footer__logo, .footer__copyright-text {
   margin-top: 4rem;
@@ -81,43 +148,65 @@ body {
 
 .container--index {
   display: grid;
-  grid-template-rows: 10vh 90vh min-content;
+  grid-template-rows: 2vh 10vh 88vh min-content;
+  background-image: url("../img/index_1_blur.jpg");
+  background-size: cover;
 }
 
 .header {
-  background-color: #d63211;
+  grid-row: 2/span 1;
   display: grid;
-  grid-template-columns: minmax(10px, 1fr) minmax(10rem, 20vw) minmax(1rem, 20vw) min-content minmax(1rem, 20vw) min-content minmax(10px, 1fr);
+  grid-template-columns: minmax(3rem, 7vw) min-content minmax(1rem, 25vw) min-content minmax(1rem, 25vw) min-content minmax(3rem, 4vw);
   align-items: center;
 }
 .header__logo {
   grid-column: 2/span 1;
-  width: 100%;
+  font-size: 5vw;
+  color: #d6400c;
 }
 .header__login {
   grid-column: 4/span 1;
+  margin-top: 10px;
 }
 .header__login-form {
   display: flex;
 }
-.header__login-username {
-  margin-right: 5px;
-}
 .header__login-password {
-  margin-right: 5px;
+  margin-left: 1rem;
 }
-.header__input {
-  border: none;
-  border-radius: 100px;
-  background-color: transparent;
-  padding: 3px 5px 3px 5px;
+.header__login-btn {
+  margin-left: 2.5rem;
 }
 .header__registration {
   grid-column: 6/span 1;
+  margin-top: 10px;
+}
+.header__registration-checkbox {
+  display: none;
 }
 
 .main {
+  grid-row: 3/span 1;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 1fr 25vw 1fr 25vw 1fr;
   margin-top: 10px;
+}
+.main__text {
+  font-size: 1.85rem;
+  line-height: 2.5rem;
+}
+.main__left {
+  grid-row: 2/span 1;
+  grid-column: 2/span 1;
+}
+.main__right {
+  grid-row: 2/span 1;
+  grid-column: 4/span 1;
+}
+
+.footer {
+  grid-row: 4/span 1;
 }
 
 .popup-reg {
@@ -128,6 +217,28 @@ body {
   position: fixed;
   top: 0;
   left: 0;
+}
+.popup-reg:target {
+  opacity: 1;
+  visibility: visible;
+}
+.popup-reg:target .popup-reg__content {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.popup-reg__close:link, .popup-reg__close:visited {
+  color: #383838;
+  position: absolute;
+  top: 2.5rem;
+  right: 2.5rem;
+  font-size: 3rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s;
+  line-height: 1;
+}
+.popup-reg__close:hover {
+  color: #d6400c;
 }
 
 /*# sourceMappingURL=main.css.map */

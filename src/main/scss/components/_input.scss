@@ -1,0 +1,44 @@
+.input {
+    border: none;
+    border-radius: 100px;
+    background-color: rgba($color-grey-dark, 50%);
+    padding: 4px 10px 3px 20px;
+    font-family: "Roboto Medium";
+    border: solid rgba($color-white, 0.35) 2px;
+    transition: all .2s;
+    color: $color-white;
+    font-size: $font-size-big;
+
+    &::placeholder {
+        color: $color-white;
+        opacity: 0.5;
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+        outline: none;
+    }
+
+    &:hover {
+        //transform: translateY(3px);
+        //box-shadow: inset 0 0 4px rgba($color-black, .5);
+        //background-color: rgba($color-primary, 80%);
+        //color: $color-white;
+        //
+        //&::after {
+        //    transform: scaleX(1.5) scaleY(1.6);
+        //    opacity: 0;
+        //}
+        border: solid rgba($color-primary, 0.5) 2px;
+    }
+
+
+    &:active,
+    &:focus {
+        //box-shadow: inset 0 0 4px rgba($color-black, .5);
+        //background-color: rgba($color-primary, 80%);
+        //color: $color-white;
+        border: solid $color-primary 2px;
+    }
+}

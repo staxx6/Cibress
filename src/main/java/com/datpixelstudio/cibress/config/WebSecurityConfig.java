@@ -41,6 +41,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .anyRequest().authenticated() // all request must be logged in
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().permitAll();
+
+        // TODO SECURITY WARNING! ONLY FOR DEVELOPING
+        http.headers().frameOptions().disable();
     }
 
 //    @Bean

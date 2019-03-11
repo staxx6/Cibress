@@ -1,18 +1,26 @@
 // COLORS
-$color-primary: #55c57a;
-$color-primary-light: hsl(111, 55%, 64%);
-$color-primary-dark: #28b485;
+$color-primary: #d6400c;
+//$color-primary-light: hsl(111, 55%, 64%);
+//$color-primary-dark: #28b485;
 
-$color-secondary: #ffb900;
-$color-secondary-light: #ffb900;
-$color-secondary-dark: #ff7730;
+//$color-secondary: #ffb900;
+//$color-secondary-light: #ffb900;
+//$color-secondary-dark: #ff7730;
 
-$color-tertiary: #2998ff;
-$color-tertiary-light: #2998ff;
-$color-tertiary-dark: #5643fa;
+//$color-tertiary: #2998ff;
+//$color-tertiary-light: #2998ff;
+//$color-tertiary-dark: #5643fa;
+
+$color-real-white: #fff;
+$color-real-black: #000;
 
 $color-white: #fff;
+$color-grey-light: #d1d1d1;
+$color-grey-dark: #383838;
 $color-black: #000;
 
+$color-transparent: rgb(0, 0, 0, 0);
+
 // FONT
-$font-default-size: 1.6rem;
+$font-size-default: 1.6rem;
+$font-size-big: 1.8rem;

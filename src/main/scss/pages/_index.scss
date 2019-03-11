@@ -1,21 +1,29 @@
 .container--index {
     display: grid;
-    grid-template-rows: 10vh 90vh min-content;
+    grid-template-rows: 2vh 10vh 88vh min-content;
     //justify-items: center;
     //align-items: center;
+
+    //Photo by Louis Hansel on Unsplash
+    background-image: url("../img/index_1_blur.jpg");
+    background-size: cover;
+    //filter: blur(3px);
 }
 
 .header {
-    background-color: #d63211;
+    //background-color: $color-primary;
     //padding: auto;
+    grid-row: 2 / span 1;
 
     display: grid;
-    grid-template-columns: minmax(10px, 1fr) minmax(10rem, 20vw) minmax(1rem, 20vw) min-content minmax(1rem, 20vw) min-content minmax(10px, 1fr);
+    //grid-template-columns: minmax(10px, 1fr) minmax(10rem, 20vw) minmax(1rem, 20vw) min-content minmax(1rem, 20vw) min-content minmax(10px, 1fr);
+    grid-template-columns: minmax(3rem, 7vw) min-content minmax(1rem, 25vw) min-content minmax(1rem, 25vw) min-content minmax(3rem, 4vw);
     align-items: center;
 
     &__logo {
         grid-column: 2 / span 1;
-        width: 100%;
+        font-size: 5vw;
+        color: $color-primary;
         //height: 100%;
         //object-fit: cover;
         //display: block;
@@ -23,34 +31,62 @@
 
     &__login {
         grid-column: 4 / span 1;
+        margin-top: 10px;
 
         &-form {
             display: flex;
         }
 
         &-username {
-            margin-right: 5px;
+            //margin-right: 5px;
         }
 
         &-password {
-            margin-right: 5px;
+            margin-left: 1rem;
         }
-    }
 
-    &__input {
-        border: none;
-        border-radius: 100px;
-        background-color: transparent;
-        padding: 3px 5px 3px 5px;
+        &-btn {
+            margin-left: 2.5rem;
+        }
     }
 
     &__registration {
         grid-column: 6 / span 1;
+        margin-top: 10px;
+
+        &-checkbox {
+            display: none;
+        }
     }
 }
 
 .main {
+    grid-row: 3 / span 1;
+
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 1fr 25vw 1fr 25vw 1fr;
+
     margin-top: 10px;
+
+    &__text {
+        font-size: 1.85rem;
+        line-height: 2.5rem;
+    }
+
+    &__left {
+        grid-row: 2 / span 1;
+        grid-column: 2 / span 1;
+    }
+
+    &__right {
+        grid-row: 2 / span 1;
+        grid-column: 4 / span 1;
+    }
+}
+
+.footer {
+    grid-row: 4 / span 1;
 }
 
 .popup-reg {
@@ -61,4 +97,34 @@
     position: fixed;
     top: 0;
     left: 0;
+
+    //Open states
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:target &__content {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    &__close {
+        &:link,
+        &:visited {
+            color: $color-grey-dark;
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            font-size: 3rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all .2s;
+            line-height: 1;
+        }
+
+        &:hover {
+            color: $color-primary;
+        }
+    }
 }
