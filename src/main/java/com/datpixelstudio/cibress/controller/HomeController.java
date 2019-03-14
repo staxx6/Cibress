@@ -23,19 +23,30 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(@AuthenticationPrincipal User user, Model model) {
+//        System.out.println("home says hello!");
 
-        System.out.println(user);
+        // TODO is this correct?
+        if(user != null) {
+            System.out.println(user.getUsername());
+
+            // TODO WARNING really stupid check (I think :))!!!
+            if(user.getUsername() != null) {
+                System.out.println("home() return main");
+                return "redirect:/today";
+            }
+        }
 
         UserDto userDto = new UserDto();
 
         // TODO: REMOVE TEST DATA
-        userDto.setFirstName("first");
-        userDto.setLastName("last");
-        userDto.setEmail("first@first.com");
-        userDto.setPassword("first");
-        userDto.setMatchingPassword("first");
+//        userDto.setFirstName("first");
+//        userDto.setLastName("last");
+//        userDto.setEmail("first@first.com");
+//        userDto.setPassword("first");
+//        userDto.setMatchingPassword("first");
 
         model.addAttribute("user", userDto);
+        System.out.println("home() return index");
         return "index";
     }
 

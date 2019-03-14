@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
-<head th:replace="fragments/headerAndNav :: header" />
-<body>
-<div th:replace="fragments/headerAndNav :: navbar" />
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head(title='Cibress')"></head>
 <div class="container">
     <p th:text="${dayEntry.date}"></p>
     <ul th:each="dishEntry : ${dayEntry.dayEntryDishes}">
@@ -14,5 +12,9 @@
     </ul>
     <p th:text="${dayEntry.anonymousComment.text}"></p>
 </div>
+
+<form th:action="@{/logout}" method="post">
+    <input class="btn btn--primary" value="Logout" type="submit" />
+</form>
 </body>
 </html>

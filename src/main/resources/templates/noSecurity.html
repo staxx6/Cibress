@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
-<head th:replace="fragments/headerAndNav :: header" />
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head(title='Cibress - No Secret')"></head>
 <body>
-    <div th:replace="fragments/headerAndNav :: navbar" />
     <div class="container">
         Everybody can see this!
     </div>

@@ -11,10 +11,9 @@ public class UserDto {
 
     @NotNull
     @NotEmpty
-    private String firstName;
+    private String username;
 
-    @NotNull
-    @NotEmpty
+    private String firstName;
     private String lastName;
 
     @NotNull
@@ -26,6 +25,14 @@ public class UserDto {
     @NotNull
     @NotEmpty
     private String email;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -65,5 +72,17 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", matchingPassword='" + matchingPassword + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head(title='Cibress - Home')">
-</head>
+<head th:replace="fragments/head :: head(title='Cibress - Home')"></head>
 <body>
     <div class="container--index">
 
@@ -16,7 +15,8 @@
                 </form>
             </div>
             <div class="header__registration">
-                <a class ="btn btn--primary btn--primary--outline header__registration" href="#registration">Registration</a>
+                <a class ="btn btn--primary btn--primary--outline header__registration" href="#pop-reg">Registration</a>
+
             </div>
         </header>
 
@@ -37,29 +37,58 @@
             </p>
         </footer>
 
-        <!--TODO Form not finished! OLD DATA-->
-        <div class="popup-reg" id="registration">
-            <div class="popup-reg__content">
+        <div class="popup popup-reg" id="pop-reg">
+            <div class="popup__content popup-reg__content">
                 <form class="popup-reg__form" th:action="@{/registration}" method="post" th:object="${user}">
                     <label class="popup-reg__label" for="username">Username: </label>
-                    <input class="input popup-reg__input" id="username" type="text" th:field="*{firstName}" placeholder=""/>
-                    <!--<p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>-->
-                    <label class="popup-reg__label" for="username">Email: </label>
-                    <input class="input popup-reg__input" id="email" type="text" th:field="*{email}" placeholder=""/>
-                    <!--<p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>-->
+                    <input class="input popup-reg__input" id="username" type="text" th:field="*{username}" placeholder=""/>
+                    <p th:each="error: ${#fields.errors('username')}" th:text="${error}">Validation error</p>
+                    <p th:if="${#fields.hasErrors('*')}">Username is invalid ALL ERROR CATCH</p>
+                    <p th:if="${#fields.hasErrors('username')}">Username is invalid</p>
+                    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}")>Username is invalid</p>
+
+                    <label class="popup-reg__label" for="email">Email: </label>
+                    <input class="input popup-reg__input" id="email" type="email" th:field="*{email}" placeholder=""/>
+                    <p th:each="error: ${#fields.errors('email')}" th:text="${error}">Validation error</p>
+
                     <label class="popup-reg__label" for="password">Password: </label>
                     <input class="input popup-reg__input" id="password" type="password" th:field="*{password}" placeholder=""/>
-                    <!--<p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>-->
+                    <p th:each="error: ${#fields.errors('password')}" th:text="${error}">Validation error</p>
+
                     <label class="popup-reg__label" for="matchingPassword">Repeat password:</label>
                     <input class="input popup-reg__input" id="matchingPassword" type="password" th:field="*{matchingPassword}" placeholder=""/>
-                    <!--<p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>-->
+                    <p th:each="error: ${#fields.errors('matchingPassword')}" th:text="${error}">Validation error</p>
 
                     <button class="btn btn--primary btn--primary--outline popup-reg__button" type="submit">Sign up</button>
                 </form>
-                <a href="#" class="popup-reg__close">&times;</a>
+                <a href="#" class="popup__close popup-reg__close">&times;</a>
+            </div>
+        </div>
+
+        <div class="popup popup-log" id="pop-log">
+            <div class="popup__content popup-log__content">
+                <div class="popup-log__login">
+                    <form class="popup-log__login-form" th:action="@{/login}" method="post" name="f">
+                        <p class="popup-log__text--primary">Success!</p>
+                        <p class="popup-log__text">Pleas login now:</p>
+                        <input class="input popup-log__login-username popup-log__input" type="text" placeholder="Username" name="username"/>
+                        <input class="input popup-log__login-password popup-log__input" type="password" placeholder="Password" name="password"/>
+                        <button class="btn btn--primary btn--primary--outline popup-log__login-btn" type="submit">Login</button>
+                    </form>
+                </div>
+                <a href="#" class="popup__close popup-log__close">&times;</a>
             </div>
         </div>
 
     </div>
+
+    <script>
+        // Open the registration popup if there was an error
+        let url = window.location.href.split("/")[window.location.href.split("/").length - 1];
+        console.log(url);
+        if(url === "registration") {
+            location.href = "#pop-reg";
+        }
+    </script>
 </body>
 </html>

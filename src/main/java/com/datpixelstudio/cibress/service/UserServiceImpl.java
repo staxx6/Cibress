@@ -13,8 +13,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository repository;
 
-    // is it in repo?
-//    @Transactional
     @Override
     public User registerNewUserAccount(UserDto accountDto)
             throws EmailExistsException {
@@ -26,10 +24,10 @@ public class UserServiceImpl implements UserService {
 
         User user = new User();
         user.setId(0);
-        user.setUsername(accountDto.getFirstName());
+        user.setUsername(accountDto.getUsername());
         user.setEmail(accountDto.getEmail());
         user.setPassword("{noop}" + accountDto.getPassword());
-        user.setRole("ROLE_USER");
+        user.setRole("ROLE_USER"); // TODO
         repository.save(user); // returns a user?
 
         return user;
