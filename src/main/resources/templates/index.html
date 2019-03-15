@@ -4,38 +4,27 @@
 <body>
     <div class="container--index">
 
-        <header class="header">
+        <header class="header-index">
             <!--<img class="logo header__logo" th:src="@{/img/logo.png}" alt="logo">-->
-            <span class="logo header__logo">Cibress</span>
-            <div class="header__login">
-                <form class="header__login-form" th:action="@{/login}" method="post" name="f">
-                    <input class="input header__login-username header__input" type="text" placeholder="Username" name="username"/>
-                    <input class="input header__login-password header__input" type="password" placeholder="Password" name="password"/>
-                    <button class="btn header__login-btn" type="submit">Login</button>
+            <span class="logo header-index__logo">Cibress</span>
+            <div class="header-index__login">
+                <form class="header-index__login-form" th:action="@{/login}" method="post" name="f">
+                    <input class="input header-index__login-username header-index__input" type="text" placeholder="Username" name="username"/>
+                    <input class="input header-index__login-password header-index__input" type="password" placeholder="Password" name="password"/>
+                    <button class="btn header-index__login-btn" type="submit">Login</button>
                 </form>
             </div>
-            <div class="header__registration">
-                <a class ="btn btn--primary btn--primary--outline header__registration" href="#pop-reg">Registration</a>
-
+            <div class="header-index__registration">
+                <a class ="btn btn--primary btn--primary--outline header-index__registration" href="#pop-reg">Registration</a>
             </div>
         </header>
 
-        <main class="main">
-            <p class="main__text main__left">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, </p>
-            <p class="main__text main__right">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. </p>
+        <main class="main-index">
+            <p class="main-index__text main-index__left">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, </p>
+            <p class="main-index__text main-index__right">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. </p>
         </main>
 
-        <!-- TODO fragment -->
-        <footer class="footer">
-            <ul class="footer__nav">
-                <li class="footer__nav-item"><a href="#" class="footer__nav-link">More placeholder</a></li>
-            </ul>
-            <!--<img class="footer__logo" th:src="@{/img/logo.png}" alt="logo">-->
-            <span class="logo footer__logo">Cibress</span>
-            <p class="footer__copyright-text">
-                &copy; Copyright 2019 by Simon Oczadly
-            </p>
-        </footer>
+        <footer th:replace="fragments/footer :: footer"></footer>
 
         <div class="popup popup-reg" id="pop-reg">
             <div class="popup__content popup-reg__content">
@@ -87,7 +76,7 @@
         let url = window.location.href.split("/")[window.location.href.split("/").length - 1];
         console.log(url);
         if(url === "registration") {
-            location.href = "#pop-reg";
+            location.href = "#pop-reg"; // TODO dont let it be in the browser history
         }
     </script>
 </body>

@@ -1,20 +1,66 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head(title='Cibress')"></head>
-<div class="container">
-    <p th:text="${dayEntry.date}"></p>
-    <ul th:each="dishEntry : ${dayEntry.dayEntryDishes}">
-        <li th:text="${dishEntry.dish.name}"></li>
-        <li th:text="${dishEntry.unit}"></li>
-    </ul>
-    <ul th:each="symptoms : ${dayEntry.symptoms}">
-        <li th:text="${symptoms.text}"></li>
-    </ul>
-    <p th:text="${dayEntry.anonymousComment.text}"></p>
+<head th:replace="fragments/head :: head(title='Cibress - Today')"></head>
+<body>
+
+<div class="container container--main">
+    <header class="header header-main">
+        <span class="logo header-main__logo">Cibress</span>
+        <nav class="header-main__navigation">
+            <form th:action="@{/logout}" method="post">
+                <input class="btn btn--primary btn--primary--white header-main__btn" value="Logout" type="submit" />
+            </form>
+        </nav>
+    </header>
+
+    <main class="main main-main"> <!-- stupid name but meh -->
+
+        <div class="day">
+            <h1 class="day__title">Thursday 14.03.19</h1>
+            <ol class="day__list">
+                <li class="day__row">
+
+                    <!-- DISH -->
+
+                    <span class="day__background day__row-time">20:08</span>
+                    <span class="day__background day__row-content">Nice Pizza</span>
+                    <span class="day__background day__row-quantity">5 portions</span>
+                    <button class="day__background day__row-remove">x</button>
+                    <!--<div class="test-btn" onclick="this.style.display='none'">TestMe</div>-->
+
+                </li>
+            </ol>
+        </div>
+
+        <div class="month">
+            <ol class="month__container">
+                <li class="month__day">
+                    <button class="month__btn">
+                        <span class="month__day-number">1</span>
+                    </button>
+                </li>
+            </ol>
+        </div>
+
+    </main>
+
+    <footer th:replace="fragments/footer :: footer"></footer>
 </div>
 
-<form th:action="@{/logout}" method="post">
-    <input class="btn btn--primary" value="Logout" type="submit" />
-</form>
+    <!--<div class="container">-->
+        <!--<p th:text="${dayEntry.date}"></p>-->
+        <!--<ul th:each="dishEntry : ${dayEntry.dayEntryDishes}">-->
+            <!--<li th:text="${dishEntry.dish.name}"></li>-->
+            <!--<li th:text="${dishEntry.unit}"></li>-->
+        <!--</ul>-->
+        <!--<ul th:each="symptoms : ${dayEntry.symptoms}">-->
+            <!--<li th:text="${symptoms.text}"></li>-->
+        <!--</ul>-->
+        <!--<p th:text="${dayEntry.anonymousComment.text}"></p>-->
+    <!--</div>-->
+    <!---->
+    <!--<form th:action="@{/logout}" method="post">-->
+        <!--<input class="btn btn&#45;&#45;primary" value="Logout" type="submit" />-->
+    <!--</form>-->
 </body>
 </html>

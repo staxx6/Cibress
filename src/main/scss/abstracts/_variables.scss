@@ -1,7 +1,11 @@
 // COLORS
+
+
+// PROJECT
 $color-primary: #d6400c;
 $color-primary-light: #fc7546;
-//$color-primary-dark: #28b485;
+$color-primary-very-light: #ffb79e;
+$color-primary-dark: #7a2404;
 
 //$color-secondary: #ffb900;
 //$color-secondary-light: #ffb900;
@@ -11,6 +15,9 @@ $color-primary-light: #fc7546;
 //$color-tertiary-light: #2998ff;
 //$color-tertiary-dark: #5643fa;
 
+
+// BLACK - WHITE
+
 $color-real-white: #fff;
 $color-real-black: #000;
 
@@ -19,10 +26,16 @@ $color-grey-light: #d1d1d1;
 $color-grey-dark: #383838;
 $color-black: #000;
 
+// MAIN COLORS
+
+$color-red: #ff2626;
+
+
 $color-transparent: rgb(0, 0, 0, 0);
 
 // FONT
-$font-size-default: 1.6rem;
+$font-size-small: 1.4rem;
+$font-size-default: 1.6rem; // default
 $font-size-big: 1.8rem;
 
 // Input - Btn

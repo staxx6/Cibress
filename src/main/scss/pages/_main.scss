@@ -1,0 +1,28 @@
+.container--main {
+    display: grid;
+    // spacing header content footer
+    grid-template-rows: 5vh 95vh min-content;
+}
+
+.header-main {
+    display: grid;
+     //minmax(1rem, 25vw) middle space
+    grid-template-columns: minmax(2rem, 5vw) min-content 1fr min-content minmax(2rem, 5vw);
+    align-items: center;
+
+    background-color: $color-primary;
+
+    &__logo {
+        grid-column: 2 / span 1;
+        font-size: 4rem;
+    }
+
+    &__navigation {
+        grid-column: 4 / span 1;
+    }
+}
+
+.main-main {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+}

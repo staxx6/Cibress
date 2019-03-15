@@ -1,0 +1,65 @@
+.day {
+    background-color: #ffffff;
+
+    &__title {
+        margin: 2rem 0 0 1rem;
+        font-size: 2rem;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 300;
+        text-align: center;
+    }
+
+    &__list {
+        padding: 4rem;
+        list-style: none;
+        font-size: $font-size-small;
+    }
+
+    //&__btn {
+    //    display: inline-block;
+    //}
+
+    &__background {
+        padding: 0.5rem 1.5rem 2rem 1.5rem;
+        border-radius: 10rem;
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: 8rem minmax(20rem, 1fr) 10rem 2rem;
+        grid-template-rows: 2rem;
+        grid-gap: 0.75rem;
+
+        &-time {
+            background-color: $color-primary-very-light;
+            text-align: center;
+        }
+
+        &-content {
+            background-color: $color-grey-light;
+        }
+
+        &-quantity {
+            background-color: $color-primary-very-light;
+            text-align: center;
+        }
+
+        &-remove {
+            background-color: $color-transparent;
+            color: $color-black;
+            border: none;
+            outline: none;
+            //width: 2rem;
+            height: 2rem;
+            text-align: center;
+            padding: 0 0 2px 0;
+            font-size: 2rem;
+
+            &:hover,
+            &:active,
+            &:focus {
+                color: $color-red;
+            }
+        }
+    }
+}
