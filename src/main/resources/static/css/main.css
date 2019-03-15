@@ -61,7 +61,7 @@ body {
   border-radius: 10rem;
   transition: all 0.2s;
   background-color: rgba(209, 209, 209, 0.75);
-  font-family: "Roboto Medium";
+  font-weight: 700;
   font-size: 1.8rem;
   outline: none;
   border: none;
@@ -176,7 +176,7 @@ body {
   border-radius: 100px;
   background-color: rgba(56, 56, 56, 0.5);
   padding: 4px 10px 3px 20px;
-  font-family: "Roboto Medium";
+  font-weight: 500;
   border: solid rgba(255, 255, 255, 0.35) 3px;
   transition: all 0.2s;
   color: #fff;
@@ -200,14 +200,14 @@ body {
   background-color: #ffffff;
 }
 .day__title {
-  margin: 2rem 0 0 1rem;
+  margin: 3rem 0 0 1rem;
   font-size: 2rem;
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
   text-align: center;
 }
 .day__list {
-  padding: 4rem;
+  padding: 3rem;
   list-style: none;
   font-size: 1.4rem;
 }
@@ -217,7 +217,7 @@ body {
 }
 .day__row {
   display: grid;
-  grid-template-columns: 8rem minmax(20rem, 1fr) 10rem 2rem;
+  grid-template-columns: 7rem minmax(20rem, 1fr) 9rem 2rem;
   grid-template-rows: 2rem;
   grid-gap: 0.75rem;
 }
@@ -376,7 +376,7 @@ body {
 
 .container--main {
   display: grid;
-  grid-template-rows: 5vh 95vh min-content;
+  grid-template-rows: 5rem calc(100vh - 5rem) min-content;
 }
 
 .header-main {

@@ -1,7 +1,7 @@
 .container--main {
     display: grid;
-    // spacing header content footer
-    grid-template-rows: 5vh 95vh min-content;
+    // header content footer
+    grid-template-rows: 5rem calc(100vh - 5rem) min-content;
 }
 
 .header-main {
