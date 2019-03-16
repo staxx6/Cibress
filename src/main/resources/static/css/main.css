@@ -217,9 +217,10 @@ body {
 }
 .day__row {
   display: grid;
-  grid-template-columns: 7rem minmax(20rem, 1fr) 9rem 2rem;
+  grid-template-columns: 7rem minmax(20rem, 1fr) 11rem 2rem;
   grid-template-rows: 2rem;
   grid-gap: 0.75rem;
+  margin-bottom: 2rem;
 }
 .day__row-time {
   background-color: #ffb79e;
