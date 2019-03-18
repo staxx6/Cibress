@@ -22,31 +22,49 @@
 
                     <!-- Dish and Symptoms-->
 
-                    <span class="day__background day__row-time">20:08</span>
-                    <span class="day__background day__row-content">Nice Pizza</span>
-                    <span class="day__background day__row-quantity">5 portions</span>
-                    <button class="day__background day__row-remove">x</button> <!-- button? -->
+                    <span class="day__entry-background day__row-time">20:08</span>
+                    <span class="day__entry-background day__row-content">Nice Pizza</span>
+                    <span class="day__entry-background day__row-quantity">5 portions</span>
+                    <button class="day__entry-background day__row-save">s</button>
+                    <button class="day__entry-background day__row-remove">x</button>
 
                     <!--<div class="test-btn" onclick="this.style.display='none'">TestMe</div>-->
 
                 </li>
                 <li class="day__row">
 
-                    <input class="day__background day__row-time">22:38</input>
-                    <input class="day__background day__row-content">Beer</input>
-                    <input class="day__background day__row-quantity">3 Liter</input>
+                    <input class="day__entry-background day__row-time" value="22:38"></input>
+                    <input class="day__entry-background day__row-content" value="Beer"></input>
+                    <input class="day__entry-background day__row-quantity" value="3 Liter"></input>
+                    <button class="day__entry-background day__row-save">s</button>
+                    <button class="day__background day__row-remove">x</button> <!-- button? -->
+
+                </li>
+
+                <li class="day__row">
+
+                    <input class="day__entry-background day__row-time" value="22:38"></input>
+                    <input class="day__entry-background day__row-content--red" value="Stomach hurts"></input>
+                    <input class="day__entry-background day__row-quantity" value="4"></input>
+                    <button class="day__entry-background day__row-save">s</button>
                     <button class="day__background day__row-remove">x</button> <!-- button? -->
 
                 </li>
             </ol>
+
+            <div class="day__entry-background day__comment">
+                <h3 class="day__comment-title">Your Comment:</h3>
+                <input type="text" class="no-input-style day__comment-text" value="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum."></input>
+                <button class="btn btn--primary--white day__comment-save">Save</button>
+            </div>
         </div>
 
         <div class="month">
             <ol class="month__container">
                 <li class="month__day">
-                    <button class="month__btn">
+                    <div class="month__btn">
                         <span class="month__day-number">1</span>
-                    </button>
+                    </div>
                 </li>
             </ol>
         </div>

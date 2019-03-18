@@ -19,14 +19,16 @@
     //    display: inline-block;
     //}
 
-    &__background {
+    &__entry-background {
         padding: 0.5rem 1.5rem 2rem 1.5rem;
         border-radius: 10rem;
+        outline: none;
+        border: none;
     }
 
     &__row {
         display: grid;
-        grid-template-columns: 7rem minmax(20rem, 1fr) 11rem 2rem;
+        grid-template-columns: 7rem minmax(20rem, 1fr) 11rem 2rem 2rem;
         grid-template-rows: 2rem;
         grid-gap: 0.75rem;
 
@@ -39,6 +41,10 @@
 
         &-content {
             background-color: $color-grey-light;
+
+            &--red {
+                background-color: $color-red-light;
+            }
         }
 
         &-quantity {
@@ -62,6 +68,28 @@
             &:focus {
                 color: $color-red;
             }
+        }
+    }
+
+    &__comment {
+        background-color: $color-grey-light;
+        border-radius: 5px;
+        margin: 2rem 3rem 2rem 3rem;
+        font-size: $font-size-small;
+
+        &-title {
+            margin: 1rem 1rem 2rem 0;
+            font-size: $font-size-default;
+        }
+
+        &-text {
+            display: block;
+        }
+
+        &-save {
+            display: block;
+            padding: 0 1rem 0 1rem;
+            font-size: $font-size-small;
         }
     }
 }

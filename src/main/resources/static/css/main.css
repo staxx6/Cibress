@@ -171,6 +171,13 @@ body {
   color: #fff;
 }
 
+.no-input-style {
+  border: none;
+  padding: 1rem;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+
 .input {
   border: none;
   border-radius: 100px;
@@ -211,13 +218,15 @@ body {
   list-style: none;
   font-size: 1.4rem;
 }
-.day__background {
+.day__entry-background {
   padding: 0.5rem 1.5rem 2rem 1.5rem;
   border-radius: 10rem;
+  outline: none;
+  border: none;
 }
 .day__row {
   display: grid;
-  grid-template-columns: 7rem minmax(20rem, 1fr) 11rem 2rem;
+  grid-template-columns: 7rem minmax(20rem, 1fr) 11rem 2rem 2rem;
   grid-template-rows: 2rem;
   grid-gap: 0.75rem;
   margin-bottom: 2rem;
@@ -228,6 +237,9 @@ body {
 }
 .day__row-content {
   background-color: #d1d1d1;
+}
+.day__row-content--red {
+  background-color: #ffb1b6;
 }
 .day__row-quantity {
   background-color: #ffb79e;
@@ -245,6 +257,24 @@ body {
 }
 .day__row-remove:hover, .day__row-remove:active, .day__row-remove:focus {
   color: #ff2626;
+}
+.day__comment {
+  background-color: #d1d1d1;
+  border-radius: 5px;
+  margin: 2rem 3rem 2rem 3rem;
+  font-size: 1.4rem;
+}
+.day__comment-title {
+  margin: 1rem 1rem 2rem 0;
+  font-size: 1.6rem;
+}
+.day__comment-text {
+  display: block;
+}
+.day__comment-save {
+  display: block;
+  padding: 0 1rem 0 1rem;
+  font-size: 1.4rem;
 }
 
 .month {
