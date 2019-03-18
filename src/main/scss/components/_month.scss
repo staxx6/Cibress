@@ -2,5 +2,20 @@
     background-color: beige;
 
     &__container {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+    }
+
+    &__day {
+        background-color: $color-grey-very-light;
+        width: 6rem;
+        height: 6rem;
+
+        &-number {
+            display: inline-block;
+            right: 3px;
+            bottom: 3px;
+        }
     }
 }
