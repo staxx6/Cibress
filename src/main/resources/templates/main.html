@@ -20,33 +20,70 @@
             <ol class="day__list">
                 <li class="day__row">
 
-                    <!-- Dish and Symptoms-->
-
                     <span class="day__entry-background day__row-time">20:08</span>
                     <span class="day__entry-background day__row-content">Nice Pizza</span>
                     <span class="day__entry-background day__row-quantity">5 portions</span>
-                    <button class="day__entry-background day__row-save">s</button>
+                    <button class="btn day__entry-background day__row-save">s</button>
                     <button class="day__entry-background day__row-remove">x</button>
 
                     <!--<div class="test-btn" onclick="this.style.display='none'">TestMe</div>-->
 
                 </li>
+
                 <li class="day__row">
 
-                    <input class="day__entry-background day__row-time" value="22:38"></input>
-                    <input class="day__entry-background day__row-content" value="Beer"></input>
-                    <input class="day__entry-background day__row-quantity" value="3 Liter"></input>
-                    <button class="day__entry-background day__row-save">s</button>
+                    <input class="day__entry-background day__row-time" value="22:38" />
+                    <input class="day__entry-background day__row-content" value="Beer" />
+                    <input class="day__entry-background day__row-quantity" value="3 Liter" />
+                    <button class="btn day__entry-background day__row-save">s</button>
+                    <button class="day__background day__row-remove">x</button> <!-- button? -->
+
+                </li>
+
+                <!-- EXTENDED -->
+
+                <li class="day__row">
+
+                    <input class="day__entry-background day__row-time" value="22:38" />
+
+                    <script>
+                        function getDayEntryExtended(ele) {
+                            let contentExtended = document.getElementById('dayEntry1ContentExtended');
+                            contentExtended.style.visibility = 'visible';
+                            ele.style.visibility="hidden";
+                        }
+                    </script>
+                    <span class="day__entry-background day__row-content" onclick="getDayEntryExtended(this)">Pizza</span>
+                    <div id="dayEntry1ContentExtended" class="day__entry-background day__row-content day__row-content--extended">
+                        <p>Name:</p>
+                        <input class="day__entry-background day__row-content-dish-name" value="Pizza" />
+                        <p>Ingredients:</p>
+                        <ul class="day__row-content-dish-ingredients">
+                            <li class="day__row-content-dish-ingredients-item">
+                                <span>5 Kg</span>
+                                <span>Tomato</span>
+                            </li>
+                            <li class="day__row-content-dish-ingredients-item">
+                                <span>2 Liter</span>
+                                <span>Water</span>
+                            </li>
+                        </ul>
+                        <p>Comment/ Recipe</p>
+                        <textarea class="no-input-style day__comment-text" rows="5" cols="30" name="dayComment" maxlength="3000">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</textarea>
+                    </div>
+
+                    <input class="day__entry-background day__row-quantity" value="3 Liter" />
+                    <button class="btn day__entry-background day__row-save">s</button>
                     <button class="day__background day__row-remove">x</button> <!-- button? -->
 
                 </li>
 
                 <li class="day__row">
 
-                    <input class="day__entry-background day__row-time" value="22:38"></input>
-                    <input class="day__entry-background day__row-content--red" value="Stomach hurts"></input>
-                    <input class="day__entry-background day__row-quantity" value="4"></input>
-                    <button class="day__entry-background day__row-save">s</button>
+                    <input class="day__entry-background day__row-time" value="22:38" />
+                    <input class="day__entry-background day__row-content--red" value="Stomach hurts" />
+                    <input class="day__entry-background day__row-quantity" value="4" />
+                    <button class="btn day__entry-background day__row-save">s</button>
                     <button class="day__background day__row-remove">x</button> <!-- button? -->
 
                 </li>
@@ -54,7 +91,7 @@
 
             <div class="day__entry-background day__comment">
                 <h3 class="day__comment-title">Your Comment:</h3>
-                <input type="text" class="no-input-style day__comment-text" value="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum."></input>
+                <textarea class="no-input-style day__comment-text" rows="5" cols="60" name="dayComment" maxlength="3000">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</textarea>
                 <button class="btn btn--primary--white day__comment-save">Save</button>
             </div>
         </div> <!-- DAY -->

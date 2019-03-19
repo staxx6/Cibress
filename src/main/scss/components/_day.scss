@@ -20,36 +20,57 @@
     //}
 
     &__entry-background {
-        padding: 0.5rem 1.5rem 2rem 1.5rem;
+        padding: 0.6rem 1.2rem 0.6rem 1.2rem;
         border-radius: 10rem;
         outline: none;
         border: none;
+        border: solid $border-size-normal $color-transparent;
+        cursor: pointer;
+
+        &:hover,
+        &:active,
+        &:focus {
+            border: solid $border-size-normal $color-primary-light;
+        }
     }
 
     &__row {
         display: grid;
-        grid-template-columns: 7rem minmax(20rem, 1fr) 11rem 2rem 2rem;
-        grid-template-rows: 2rem;
+        grid-template-columns: 6rem minmax(20rem, 1fr) 10rem 2rem 2rem;
+        grid-template-rows: minmax(2rem, min-content);
         grid-gap: 0.75rem;
 
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
 
         &-time {
             background-color: $color-primary-very-light;
             text-align: center;
+            height: 2rem;
         }
 
         &-content {
             background-color: $color-grey-light;
+            height: 2rem;
 
             &--red {
                 background-color: $color-red-light;
+            }
+
+            &--extended {
+                border-radius: 5px;
+                height: 100%;
+                visibility: hidden;
             }
         }
 
         &-quantity {
             background-color: $color-primary-very-light;
             text-align: center;
+            height: 2rem;
+        }
+
+        &-save {
+            height: 2rem;
         }
 
         &-remove {
@@ -76,18 +97,21 @@
         border-radius: 5px;
         margin: 2rem 3rem 2rem 3rem;
         font-size: $font-size-small;
+        padding: 0.5rem 1rem;
 
         &-title {
-            margin: 1rem 1rem 2rem 0;
+            margin: 0.5rem 0.5rem 0.5rem 0;
             font-size: $font-size-default;
         }
 
         &-text {
             display: block;
+            background-color: $color-grey-very-light;
         }
 
         &-save {
             display: block;
+            margin-top: 0.5rem;
             padding: 0 1rem 0 1rem;
             font-size: $font-size-small;
         }
