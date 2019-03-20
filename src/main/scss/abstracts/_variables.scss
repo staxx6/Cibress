@@ -41,6 +41,12 @@ $font-size-small: 1.4rem;
 $font-size-default: 1.6rem; // default
 $font-size-big: 1.8rem;
 
+$font-weight-light: lighter;
+$font-weight-normal: normal; // default
+$font-weight-bolder: bolder; // bolder < bold!
+//$font-weight-bold: bold;
+$font-weight-bold: 700;
+
 // Input - Btn
 
 $border-size-normal: 2px;

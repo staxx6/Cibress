@@ -1,6 +1,9 @@
+// testing for font-weight
+@import url('https://fonts.googleapis.com/css?family=Roboto:300:400:500:700');
+
 body {
-  font-family: "Roboto Medium", sans-serif;
-  font-weight: 400;
+  font-family: Roboto, sans-serif;
+  font-weight: $font-weight-normal;
   font-size: 1.6rem;
   line-height: 1.6rem;
   color: $color-black;
