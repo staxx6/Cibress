@@ -87,4 +87,16 @@ public class DayEntryDish {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        return "DayEntryDish{" +
+                "id=" + id +
+                ", timeRecorded=" + timeRecorded +
+                ", quantityIngredient=" + quantityIngredient +
+                ", unit='" + unit + '\'' +
+                ", dayEntryByIdDayEntry=" + dayEntryByIdDayEntry +
+                ", dish=" + dish +
+                '}';
+    }
 }

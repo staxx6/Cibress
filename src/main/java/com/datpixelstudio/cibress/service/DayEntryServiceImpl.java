@@ -30,6 +30,9 @@ public class DayEntryServiceImpl implements DayEntryService {
             return dayEntryDto;
         }
 
+        //  Got confused here, not sure if needed the id here
+        dayEntryDto.setId(dayEntry.getId()); // TODO what if new date? see if==null statement
+
         dayEntryDto.setDate(date);
         dayEntryDto.setDayEntryDishes(dayEntry.getDayEntryDishes());
         dayEntryDto.setSymptoms(dayEntry.getSymptoms());

@@ -19,72 +19,28 @@
             <h1 class="day__title">Thursday 14.03.19</h1>
             <ol class="day__list">
 
-                <!-- EXTENDED -->
+                <!-- 'th:each' works only in parent. (Not in li tag) not sure why -->
+                <div th:each="dishEntry : ${dayEntry.dayEntryDishes}">
+                    <li th:replace="fragments/dishRow :: dishRow(id=${dishEntry.getId()}, dishEntry=${dishEntry})"></li>
+                </div>
 
-                <li class="day__row">
+                <!-- TODO ADD A ROW BUTTON lel -->
+                <!-- TODO Symptom -->
+                <!--<li class="day__row">-->
 
-                    <input class="day__entry-background day__row-time" value="22:38" />
+                    <!--<input class="day__entry-background day__row-time" value="22:38" />-->
+                    <!--<input class="day__entry-background day__row-content&#45;&#45;red" value="Stomach hurts" />-->
+                    <!--<input class="day__entry-background day__row-quantity" value="4" />-->
+                    <!--<button class="btn day__entry-background day__row-save">s</button>-->
+                    <!--<button class="day__background day__row-remove">x</button> &lt;!&ndash; button? &ndash;&gt;-->
 
-                    <!-- DEV: switch next 3 rows comments-->
-                    <!--<div id="dayEntry1ContentHidden" class="day__row-content day__row-content&#45;&#45;extended">-->
-                    <span class="day__entry-background day__row-content day__row-content--small pointer" onclick="getDayEntryExtended(this)">Pizza</span>
-                    <div id="dayEntry1ContentHidden" class="day__entry-background day__row-content day__row-content--hidden">
-                        <div class="day__dish">
-
-                            <p class="day__dish-name-title">Name:</p>
-                            <input class="day__entry-background day__dish-name-input" value="Pizza" />
-                            <p class="day__ingredients-title">Ingredients:</p>
-                            <ul class="day__ingredients">
-                                <li class="day__ingredients-item">
-                                    <input class="day__entry-background day__ingredients-item--quantity" value="5 Kg"></input>
-                                    <input class="day__entry-background day__ingredients-item--name" value="Tomato"></input>
-                                </li>
-                                <li class="day__ingredients-item">
-                                    <input class="day__entry-background day__ingredients-item--quantity" value="5 Kg"></input>
-                                    <input class="day__entry-background day__ingredients-item--name" value="Tomato"></input>
-                                </li>
-                                <li class="day__ingredients-item">
-                                    <input class="day__entry-background day__ingredients-item--quantity" value="5 Kg"></input>
-                                    <input class="day__entry-background day__ingredients-item--name" value="Tomato"></input>
-                                </li>
-                                <li class="day__ingredients-item">
-                                    <input class="day__entry-background day__ingredients-item--quantity" value="5 Kg"></input>
-                                    <input class="day__entry-background day__ingredients-item--name" value="Tomato"></input>
-                                </li>
-                                <li class="day__ingredients-item">
-                                    <input class="day__entry-background day__ingredients-item--quantity" value="5 Kg"></input>
-                                    <input class="day__entry-background day__ingredients-item--name" value="Tomato"></input>
-                                </li>
-                                <li class="day__ingredients-item">
-                                    <button class="btn btn--primary btn--primary--outline day__ingredients-item--add">+</button>
-                                </li>
-                            </ul>
-                            <p class="day__dish-comment-title">Comment/ Recipe:</p>
-                            <textarea class="no-input-style day__entry-background day__dish-comment-text" rows="5" cols="25" name="dayComment" maxlength="3000">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</textarea>
-
-                        </div>
-                    </div>
-
-                    <input class="day__entry-background day__row-quantity" value="3 Liter" />
-                    <button class="btn btn--primary btn--primary--outline day__row-save">&#10004</button>
-                    <button class="day__background day__row-remove">x</button>
-
-                </li>
-
-                <li class="day__row">
-
-                    <input class="day__entry-background day__row-time" value="22:38" />
-                    <input class="day__entry-background day__row-content--red" value="Stomach hurts" />
-                    <input class="day__entry-background day__row-quantity" value="4" />
-                    <button class="btn day__entry-background day__row-save">s</button>
-                    <button class="day__background day__row-remove">x</button> <!-- button? -->
-
-                </li>
+                <!--</li>-->
             </ol>
 
             <div class="day__entry-background day__comment">
                 <h3 class="day__comment-title">Your Comment:</h3>
-                <textarea class="no-input-style day__comment-text" rows="5" cols="60" name="dayComment" maxlength="3000">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</textarea>
+                <textarea class="no-input-style day__comment-text" rows="5" cols="60" name="dayComment"
+                          maxlength="3000" th:text="${dayEntry.anonymousComment.text}">Comment</textarea>
                 <button class="btn btn--primary--white day__comment-save">Save</button>
             </div>
         </div> <!-- DAY -->

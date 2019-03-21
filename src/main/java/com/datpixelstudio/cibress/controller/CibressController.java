@@ -21,7 +21,11 @@ public class CibressController {
     @GetMapping("/today")
     public String getTodayDayEntry(@AuthenticationPrincipal User user, Model model) {
 
-        DayEntryDto dayEntryDto = dayEntryService.findByDate(user, LocalDate.now());
+        System.out.println("Im doing something /today controller");
+
+        LocalDate dateWithData = LocalDate.of(2019,3, 10);
+        DayEntryDto dayEntryDto = dayEntryService.findByDate(user, dateWithData); // LocalDate.now()
+        System.out.println(dayEntryDto);
         model.addAttribute("dayEntry", dayEntryDto);
 
         return "main";

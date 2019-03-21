@@ -11,11 +11,22 @@ import java.util.List;
 public class DayEntryDto {
 
     @NotNull
+    private long id;
+
+    @NotNull
     private LocalDate date;
 
     private List<DayEntryDish> dayEntryDishes;
     private List<Symptom> symptoms;
     private AnonymousComment anonymousComment;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public LocalDate getDate() {
         return date;
@@ -47,5 +58,16 @@ public class DayEntryDto {
 
     public void setAnonymousComment(AnonymousComment anonymousComment) {
         this.anonymousComment = anonymousComment;
+    }
+
+    @Override
+    public String toString() {
+        return "DayEntryDto{" +
+                "id=" + id +
+                ", date=" + date +
+                ", dayEntryDishes=" + dayEntryDishes +
+                ", symptoms=" + symptoms +
+                ", anonymousComment=" + anonymousComment +
+                '}';
     }
 }

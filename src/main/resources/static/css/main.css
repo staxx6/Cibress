@@ -322,6 +322,7 @@ body {
 .day__comment-text {
   display: block;
   background-color: #e7e7e7;
+  resize: vertical;
 }
 .day__comment-save {
   display: block;
