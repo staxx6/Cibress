@@ -16,15 +16,18 @@
     <main class="main main-main"> <!-- stupid name but meh -->
 
         <div class="day">
+            <!-- TODO dynamic day-->
             <h1 class="day__title">Thursday 14.03.19</h1>
             <ol class="day__list">
 
                 <!-- 'th:each' works only in parent. (Not in li tag) not sure why -->
                 <div th:each="dishEntry : ${dayEntry.dayEntryDishes}">
-                    <li th:replace="fragments/dishRow :: dishRow(id=${dishEntry.getId()}, dishEntry=${dishEntry})"></li>
+                    <!-- .dish.dishIngredientsById.get(0).ingredientByIdIngredient.na -->
+                    <li th:replace="fragments/dishRow :: dishRow(id=${dishEntry.id}, dishEntry=${dishEntry})"></li>
                 </div>
 
                 <!-- TODO ADD A ROW BUTTON lel -->
+
                 <!-- TODO Symptom -->
                 <!--<li class="day__row">-->
 

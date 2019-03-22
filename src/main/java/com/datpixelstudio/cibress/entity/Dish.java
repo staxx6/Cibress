@@ -2,6 +2,7 @@ package com.datpixelstudio.cibress.entity;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -10,9 +11,9 @@ public class Dish {
     private int id;
     private String name;
     private boolean publicView;
-    private Collection<DayEntryDish> dayEntryDishesById;
+    private List<DayEntryDish> dayEntryDishesById;
     private AnonymousComment anonymousCommentByIdAnonymousComment;
-    private Collection<DishIngredient> dishIngredientsById;
+    private List<DishIngredient> dishIngredientsById;
 
     @Id
     @Column(name = "id")
@@ -45,11 +46,11 @@ public class Dish {
     }
 
     @OneToMany(mappedBy = "dish")
-    public Collection<DayEntryDish> getDayEntryDishesById() {
+    public List<DayEntryDish> getDayEntryDishesById() {
         return dayEntryDishesById;
     }
 
-    public void setDayEntryDishesById(Collection<DayEntryDish> dayEntryDishesById) {
+    public void setDayEntryDishesById(List<DayEntryDish> dayEntryDishesById) {
         this.dayEntryDishesById = dayEntryDishesById;
     }
 
@@ -64,11 +65,11 @@ public class Dish {
     }
 
     @OneToMany(mappedBy = "dishByIdDish")
-    public Collection<DishIngredient> getDishIngredientsById() {
+    public List<DishIngredient> getDishIngredientsById() {
         return dishIngredientsById;
     }
 
-    public void setDishIngredientsById(Collection<DishIngredient> dishIngredientsById) {
+    public void setDishIngredientsById(List<DishIngredient> dishIngredientsById) {
         this.dishIngredientsById = dishIngredientsById;
     }
 

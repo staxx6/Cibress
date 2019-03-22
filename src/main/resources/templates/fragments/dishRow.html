@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<!--<title th:text="${title}"></title>-->
+
 <li th:fragment="dishRow (id, dishEntry)" class="day__row">
     <!-- dishTime- -->
     <input class="day__entry-background day__row-time" value="22:38" th:name="'dishTime-' + ${id}"/>
@@ -16,39 +16,31 @@
             <p class="day__dish-name-title">Name:</p>
             <input class="day__entry-background day__dish-name-input" th:value="${dishEntry.dish.name}" />
             <p class="day__ingredients-title">Ingredients:</p>
+
             <ul class="day__ingredients">
-                <li class="day__ingredients-item">
-                    <input class="day__entry-background day__ingredients-item--quantity" value="5 Kg" />
-                    <input class="day__entry-background day__ingredients-item--name" value="Tomato" />
-                </li>
-                <li class="day__ingredients-item">
-                    <input class="day__entry-background day__ingredients-item--quantity" value="5 Kg" />
-                    <input class="day__entry-background day__ingredients-item--name" value="Tomato" />
-                </li>
-                <li class="day__ingredients-item">
-                    <input class="day__entry-background day__ingredients-item--quantity" value="5 Kg" />
-                    <input class="day__entry-background day__ingredients-item--name" value="Tomato" />
-                </li>
-                <li class="day__ingredients-item">
-                    <input class="day__entry-background day__ingredients-item--quantity" value="5 Kg" />
-                    <input class="day__entry-background day__ingredients-item--name" value="Tomato" />
-                </li>
-                <li class="day__ingredients-item">
-                    <input class="day__entry-background day__ingredients-item--quantity" value="5 Kg" />
-                    <input class="day__entry-background day__ingredients-item--name" value="Tomato" />
-                </li>
-                <li class="day__ingredients-item">
-                    <button class="btn btn--primary btn--primary--outline day__ingredients-item--add">+</button>
-                </li>
+                <div  th:each="ingredient : ${dishEntry.dish.dishIngredientsById}">
+                    <li class="day__ingredients-item" th:replace="fragments/dishRow :: ingredient(ingredientData=${ingredient})"></li>
+                </div>
+                <button class="btn btn--primary btn--primary--outline day__ingredients-item--add">+</button>
             </ul>
+
             <p class="day__dish-comment-title">Comment/ Recipe:</p>
             <textarea class="no-input-style day__entry-background day__dish-comment-text" rows="4" cols="25" name="dayComment" maxlength="3000">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</textarea>
 
         </div>
     </div>
 
-    <input class="day__entry-background day__row-quantity" value="3 Liter" />
+    <input class="day__entry-background day__row-quantity" th:value="${dishEntry.quantityIngredient}" />
+    <input class="day__entry-background day__row-quantity-unit" th:value="${dishEntry.unit.name}" />
     <button class="btn btn--primary btn--primary--outline day__row-save">&#10004</button>
     <button class="day__background day__row-remove">x</button>
 </li>
+
+<li th:fragment="ingredient (ingredientData)" class="day__ingredients-item">
+    <input class="day__entry-background day__ingredients-item--quantity" th:value="${ingredientData.quantityIngredient}" />
+    <input class="day__entry-background day__ingredients-item--quantity-unit" th:value="${ingredientData.unit.name}" />
+    <input class="day__entry-background day__ingredients-item--name" th:value="${ingredientData.ingredientByIdIngredient.name}" />
+    <button class="btn day__ingredients-item--remove">x</button>
+</li>
+
 </html>

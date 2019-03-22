@@ -8,7 +8,7 @@ import java.util.Objects;
 public class DishIngredient {
     private int id;
     private Integer quantityIngredient;
-    private String unit;
+    private Unit unit;
     private Dish dishByIdDish;
     private Ingredient ingredientByIdIngredient;
 
@@ -32,13 +32,13 @@ public class DishIngredient {
         this.quantityIngredient = quantityIngredient;
     }
 
-    @Basic
-    @Column(name = "unit")
-    public String getUnit() {
+    @OneToOne
+    @JoinColumn(name = "id_unit", referencedColumnName = "id")
+    public Unit getUnit() {
         return unit;
     }
 
-    public void setUnit(String unit) {
+    public void setUnit(Unit unit) {
         this.unit = unit;
     }
 

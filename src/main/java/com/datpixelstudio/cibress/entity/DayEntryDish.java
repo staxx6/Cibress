@@ -11,7 +11,7 @@ public class DayEntryDish {
     private int id;
     private LocalTime timeRecorded;
     private Integer quantityIngredient;
-    private String unit;
+    private Unit unit;
     private DayEntry dayEntryByIdDayEntry;
     private Dish dish;
 
@@ -45,13 +45,13 @@ public class DayEntryDish {
         this.quantityIngredient = quantityIngredient;
     }
 
-    @Basic
-    @Column(name = "unit")
-    public String getUnit() {
+    @OneToOne
+    @JoinColumn(name = "id_unit", referencedColumnName = "id")
+    public Unit getUnit() {
         return unit;
     }
 
-    public void setUnit(String unit) {
+    public void setUnit(Unit unit) {
         this.unit = unit;
     }
 
