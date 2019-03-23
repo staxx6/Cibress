@@ -41,8 +41,8 @@
     &__row {
         display: grid;
 
-        //                      time content            qtn unit save           remove
-        grid-template-columns: 6rem minmax(30rem, 1fr) 4rem 6rem min-content min-content;
+        //                      time    content           qtn unit save           remove
+        grid-template-columns: 6.5rem minmax(30rem, 1fr) 4rem 6rem min-content min-content;
         grid-template-rows: minmax(2rem, min-content);
         grid-gap: 0.75rem;
         //align-items: center;

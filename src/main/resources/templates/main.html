@@ -16,8 +16,8 @@
     <main class="main main-main"> <!-- stupid name but meh -->
 
         <div class="day">
-            <!-- TODO dynamic day-->
-            <h1 class="day__title">Thursday 14.03.19</h1>
+            <!-- TODO day title format 'Day Name - Date'-->
+            <h1 class="day__title" th:text="${dayEntry.date}">Thursday 14.03.19</h1>
             <ol class="day__list">
 
                 <!-- 'th:each' works only in parent. (Not in li tag) not sure why -->
@@ -26,7 +26,7 @@
                     <li th:replace="fragments/dishRow :: dishRow(id=${dishEntry.id}, dishEntry=${dishEntry})"></li>
                 </div>
 
-                <!-- TODO ADD A ROW BUTTON lel -->
+                <button class="day__entry-background day__add-dish-button">Add a dish</button>
 
                 <!-- TODO Symptom -->
                 <!--<li class="day__row">-->
@@ -46,55 +46,22 @@
                           maxlength="3000" th:text="${dayEntry.anonymousComment.text}">Comment</textarea>
                 <button class="btn btn--primary--white day__comment-save">Save</button>
             </div>
-        </div> <!-- DAY -->
+        </div>
 
         <div class="month">
             <ol class="month__container">
-                <li class="month__day">
-                    <span class="month__day-number">1</span>
-                </li>
-                <li class="month__day">
-                    <span class="month__day-number">2</span>
-                </li>
-                <li class="month__day">
-                    <span class="month__day-number">3</span>
-                </li>
-                <li class="month__day">
-                    <span class="month__day-number">4</span>
-                </li>
-                <li class="month__day">
-                    <span class="month__day-number">5</span>
-                </li>
-                <li class="month__day">
-                    <span class="month__day-number">6</span>
-                </li>
-                <li class="month__day">
-                    <span class="month__day-number">7</span>
-                </li>
+                <!-- TODO Add data in controller! -->
+                <div th:each="day : ${month.days}"></div>
+                    <li th:replace="fragments/monthDay :: day(monthDay=${day})"></li>
             </ol>
-        </div> <!-- MONTH -->
+        </div>
 
     </main>
 
     <footer th:replace="fragments/footer :: footer"></footer>
 </div>
 
-    <!--<div class="container">-->
-        <!--<p th:text="${dayEntry.date}"></p>-->
-        <!--<ul th:each="dishEntry : ${dayEntry.dayEntryDishes}">-->
-            <!--<li th:text="${dishEntry.dish.name}"></li>-->
-            <!--<li th:text="${dishEntry.unit}"></li>-->
-        <!--</ul>-->
-        <!--<ul th:each="symptoms : ${dayEntry.symptoms}">-->
-            <!--<li th:text="${symptoms.text}"></li>-->
-        <!--</ul>-->
-        <!--<p th:text="${dayEntry.anonymousComment.text}"></p>-->
-    <!--</div>-->
-    <!---->
-    <!--<form th:action="@{/logout}" method="post">-->
-        <!--<input class="btn btn&#45;&#45;primary" value="Logout" type="submit" />-->
-    <!--</form>-->
+<script th:src="@{js/main.js}"></script>
 
-    <script th:src="@{js/main.js}"></script>
 </body>
 </html>

@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<li th:fragment="day (monthDay)" class="month__day">
+    <span class="month__day-number" th:text="${monthDay.date.day}">1</span>
+</li>
+
+</html>
