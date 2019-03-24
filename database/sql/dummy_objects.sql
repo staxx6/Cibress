@@ -1,5 +1,7 @@
 USE cibress;
 
+DELETE FROM symptom;
+DELETE FROM symptom_name;
 DELETE FROM day_entry_dish;
 DELETE FROM day_entry;
 DELETE FROM dish_ingredient;
@@ -35,6 +37,11 @@ INSERT INTO day_entry_dish VALUES (1, 1, 1, CURTIME(), 1, 1);
 INSERT INTO day_entry_dish VALUES (2, 1, 1, CURTIME(), 1, 1);
 INSERT INTO day_entry_dish VALUES (3, 1, 1, CURTIME(), 1, 1);
 INSERT INTO day_entry_dish VALUES (4, 2, 1, CURTIME(), 1, 1);
+
+INSERT INTO symptom_name VALUES (1, "everyting hurts", 1);
+
+INSERT INTO symptom VALUES (1, CURTIME(), "mostly my brain", 5, 1, 1);
+INSERT INTO symptom VALUES (2, CURTIME(), "mostly my brain", 3, 1, 2);
 
 # Playground stuff
 INSERT INTO message VALUES (1, 1, "Das ist ist super msg", "titel 1");

@@ -1,5 +1,6 @@
 package com.datpixelstudio.cibress.controller;
 
+import com.datpixelstudio.cibress.calender.Month;
 import com.datpixelstudio.cibress.dto.DayEntryDto;
 import com.datpixelstudio.cibress.entity.User;
 import com.datpixelstudio.cibress.service.DayEntryService;
@@ -28,6 +29,10 @@ public class CibressController {
 //        System.out.println(dayEntryDto);
         model.addAttribute("dayEntry", dayEntryDto);
 
+        // Calender
+        Month month = new Month(user, LocalDate.now(), dayEntryService);
+        model.addAttribute("month", month);
+
         return "main";
     }
 
@@ -44,4 +49,6 @@ public class CibressController {
 
         return "main";
     }
+
+
 }

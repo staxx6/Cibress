@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<li th:fragment="day (monthDay)" class="month__day">
-    <span class="month__day-number" th:text="${monthDay.date.day}">1</span>
+<li th:fragment="day (monthDay)" class="month__day " th:classappend="'month__day--' + ${monthDay.intensity}">
+    <div class="" th:classappend="${monthDay.today} ? 'month__day--today' : ''">
+        <span class="month__day-number" th:text="${monthDay.getDate().getDayOfMonth()}">1</span>
+    </div>
 </li>
 
 </html>

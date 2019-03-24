@@ -319,6 +319,10 @@ body {
   background-color: #ff2626;
   cursor: pointer;
 }
+.day__add-dish-button {
+  font-size: 1.6rem;
+  padding: 0.2rem 0.7rem 0.2rem 0.7rem;
+}
 .day__comment {
   background-color: #d1d1d1;
   border-radius: 5px;
@@ -413,7 +417,6 @@ body {
   grid-template-columns: repeat(7, 1fr);
 }
 .month__day {
-  background-color: #e7e7e7;
   width: 6rem;
   height: 6rem;
 }
@@ -421,6 +424,43 @@ body {
   display: inline-block;
   right: 3px;
   bottom: 3px;
+}
+.month__day--today {
+  color: #27ff00;
+  font-weight: 700;
+}
+.month__day--0 {
+  background-color: #e7e7e7;
+}
+.month__day--1 {
+  background-color: rgba(255, 38, 38, 0.1);
+}
+.month__day--2 {
+  background-color: rgba(255, 38, 38, 0.2);
+}
+.month__day--3 {
+  background-color: rgba(255, 38, 38, 0.3);
+}
+.month__day--4 {
+  background-color: rgba(255, 38, 38, 0.4);
+}
+.month__day--5 {
+  background-color: rgba(255, 38, 38, 0.5);
+}
+.month__day--6 {
+  background-color: rgba(255, 38, 38, 0.6);
+}
+.month__day--7 {
+  background-color: rgba(255, 38, 38, 0.7);
+}
+.month__day--8 {
+  background-color: rgba(255, 38, 38, 0.8);
+}
+.month__day--9 {
+  background-color: rgba(255, 38, 38, 0.1);
+}
+.month__day--10 {
+  background-color: #ff2626;
 }
 
 .footer {

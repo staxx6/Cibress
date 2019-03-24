@@ -150,6 +150,11 @@
         }
     }
 
+    &__add-dish-button {
+        font-size: $font-size-default;
+        padding: 0.2rem 0.7rem 0.2rem 0.7rem;
+    }
+
     &__comment {
         background-color: $color-grey-light;
         border-radius: 5px;

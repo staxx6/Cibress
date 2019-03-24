@@ -26,7 +26,7 @@
                     <li th:replace="fragments/dishRow :: dishRow(id=${dishEntry.id}, dishEntry=${dishEntry})"></li>
                 </div>
 
-                <button class="day__entry-background day__add-dish-button">Add a dish</button>
+                <button class="btn btn--primary btn--primary--outline day__add-dish-button">Add a dish</button>
 
                 <!-- TODO Symptom -->
                 <!--<li class="day__row">-->
@@ -50,9 +50,10 @@
 
         <div class="month">
             <ol class="month__container">
-                <!-- TODO Add data in controller! -->
-                <div th:each="day : ${month.days}"></div>
+
+                <div th:each="day : ${month.days}">
                     <li th:replace="fragments/monthDay :: day(monthDay=${day})"></li>
+                </div>
             </ol>
         </div>
 
