@@ -58,7 +58,6 @@ public class Month {
 
     public void addDay(Day day) {
         days.add(day);
-        System.out.println(day);
     }
 
     public Day getDay(int index) {

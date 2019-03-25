@@ -4,6 +4,7 @@ import com.datpixelstudio.cibress.dao.DayEntryRepository;
 import com.datpixelstudio.cibress.dto.DayEntryDto;
 import com.datpixelstudio.cibress.entity.AnonymousComment;
 import com.datpixelstudio.cibress.entity.DayEntry;
+import com.datpixelstudio.cibress.entity.DayEntryDish;
 import com.datpixelstudio.cibress.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,10 @@ public class DayEntryServiceImpl implements DayEntryService {
         dayEntryDto.setAnonymousComment(dayEntry.getAnonymousComment());
 
         return dayEntryDto;
+    }
+
+    @Override
+    public void addDish(DayEntryDish dayEntryDish) {
+        // TODO
     }
 }

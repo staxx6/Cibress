@@ -17,6 +17,13 @@ public class Unit {
     @Column(name = "short_name")
     private boolean shortName;
 
+    public Unit() {}
+
+    public Unit(String name, boolean shortName) {
+        this.name = name;
+        this.shortName = shortName;
+    }
+
     public long getId() {
         return id;
     }

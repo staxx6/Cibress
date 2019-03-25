@@ -13,6 +13,19 @@ function getDayEntryShrink(toHide) {
     toHide.className = 'day__entry-background day__row-content day__row-content--hidden';
 }
 
+function newDayDish() {
+    let request = new XMLHttpRequest();
+    request.onreadystatechange = () => {
+        if(request.readyState === XMLHttpRequest.DONE) {
+            let newDish = document.createElement('div');
+            newDish.innerHTML = request.responseText;
+            document.getElementById('dayList').appendChild(newDish);
+        }
+    }
+    request.open('GET', 'http://localhost:8080/newDayDish');
+    request.send();
+}
+
 // Open the registration popup if there was an error
 // let url = window.location.href.split("/")[window.location.href.split("/").length - 1];
 // console.log(url);

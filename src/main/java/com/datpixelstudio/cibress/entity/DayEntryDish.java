@@ -8,6 +8,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "day_entry_dish", schema = "cibress", catalog = "")
 public class DayEntryDish {
+
     private int id;
     private LocalTime timeRecorded;
     private Integer quantityIngredient;

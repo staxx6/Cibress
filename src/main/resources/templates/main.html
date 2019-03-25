@@ -18,7 +18,7 @@
         <div class="day">
             <!-- TODO day title format 'Day Name - Date'-->
             <h1 class="day__title" th:text="${dayEntry.date}">Thursday 14.03.19</h1>
-            <ol class="day__list">
+            <ol id="dayList" class="day__list">
 
                 <!-- 'th:each' works only in parent. (Not in li tag) not sure why -->
                 <div th:each="dishEntry : ${dayEntry.dayEntryDishes}">
@@ -26,19 +26,19 @@
                     <li th:replace="fragments/dishRow :: dishRow(id=${dishEntry.id}, dishEntry=${dishEntry})"></li>
                 </div>
 
-                <button class="btn btn--primary btn--primary--outline day__add-dish-button">Add a dish</button>
 
                 <!-- TODO Symptom -->
                 <!--<li class="day__row">-->
 
-                    <!--<input class="day__entry-background day__row-time" value="22:38" />-->
-                    <!--<input class="day__entry-background day__row-content&#45;&#45;red" value="Stomach hurts" />-->
-                    <!--<input class="day__entry-background day__row-quantity" value="4" />-->
-                    <!--<button class="btn day__entry-background day__row-save">s</button>-->
-                    <!--<button class="day__background day__row-remove">x</button> &lt;!&ndash; button? &ndash;&gt;-->
+                <!--<input class="day__entry-background day__row-time" value="22:38" />-->
+                <!--<input class="day__entry-background day__row-content&#45;&#45;red" value="Stomach hurts" />-->
+                <!--<input class="day__entry-background day__row-quantity" value="4" />-->
+                <!--<button class="btn day__entry-background day__row-save">s</button>-->
+                <!--<button class="day__background day__row-remove">x</button> &lt;!&ndash; button? &ndash;&gt;-->
 
                 <!--</li>-->
             </ol>
+            <button class="btn btn--primary btn--primary--outline day__add-dish-button" onclick="newDayDish()">Add a dish</button>
 
             <div class="day__entry-background day__comment">
                 <h3 class="day__comment-title">Your Comment:</h3>
