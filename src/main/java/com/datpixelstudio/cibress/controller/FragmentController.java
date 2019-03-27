@@ -1,10 +1,9 @@
 package com.datpixelstudio.cibress.controller;
 
-import com.datpixelstudio.cibress.entity.DayEntryDish;
-import com.datpixelstudio.cibress.entity.Dish;
-import com.datpixelstudio.cibress.entity.Unit;
+import com.datpixelstudio.cibress.entity.*;
 import com.datpixelstudio.cibress.service.DayEntryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,21 +22,38 @@ public class FragmentController {
     DayEntryService dayEntryService;
 
     @GetMapping("/newDayDish")
-    public String newDayDish(Model model) {
+    public String newDayDish(@AuthenticationPrincipal User user, Model model) {
         DayEntryDish dayEntryDish = new DayEntryDish();
         dayEntryDish.setTimeRecorded(LocalTime.now());
         dayEntryDish.setUnit(new Unit("Portion", false));
         dayEntryDish.setQuantityIngredient(1);
 
         Dish dish = new Dish();
-        dish.setName("Empty");
+        dish.setName("Enter a new dish!");
         dayEntryDish.setDish(dish);
 
-        dayEntryService.addDish(dayEntryDish);
+        dayEntryService.newDishEntry(user, dayEntryDish);
 
-        model.addAttribute("id", 0);
+        model.addAttribute("id", 0); // TODO after 'add' dayEntryDish has a new id?
         model.addAttribute("dishEntry", dayEntryDish);
 
         return "fragments/dishRow :: dishRow";
+    }
+
+    @GetMapping("/newIngredient")
+    public String newIngredient(Model model) {
+        DishIngredient dishIngredient = new DishIngredient();
+
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName("Enter a new ingredient!");
+        ingredient.setPublicView(false);
+
+        dishIngredient.setIngredient(ingredient);
+        dishIngredient.setUnit(new Unit("g", true));
+        dishIngredient.setQuantity(100);
+
+        model.addAttribute("ingredientData", dishIngredient);
+
+        return "fragments/dishRow :: ingredient";
     }
 }

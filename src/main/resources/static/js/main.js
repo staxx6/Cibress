@@ -22,7 +22,21 @@ function newDayDish() {
             document.getElementById('dayList').appendChild(newDish);
         }
     }
-    request.open('GET', 'http://localhost:8080/newDayDish');
+    request.open('GET', 'http://localhost:8080/newDayDish'); // TODO change link
+    request.send();
+}
+
+function newIngredient(id) {
+    let request = new XMLHttpRequest();
+    request.onreadystatechange = () => {
+        if(request.readyState === XMLHttpRequest.DONE) {
+            let newIngredient = document.createElement('div');
+            newIngredient.innerHTML = request.responseText;
+            console.log('Want: ' + 'ingredientList-' + id);
+            document.getElementById('ingredientList-' + id).appendChild(newIngredient);
+        }
+    }
+    request.open('GET', 'http://localhost:8080/newIngredient'); // TODO change link
     request.send();
 }
 

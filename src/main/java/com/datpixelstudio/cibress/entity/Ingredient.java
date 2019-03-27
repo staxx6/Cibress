@@ -9,7 +9,7 @@ public class Ingredient {
     private int id;
     private String name;
     private boolean publicView;
-    private Collection<DishIngredient> dishIngredientsById;
+    private Collection<DishIngredient> dishes;
 
     @Id
     @Column(name = "id")
@@ -56,12 +56,12 @@ public class Ingredient {
         return Objects.hash(id, name, publicView);
     }
 
-    @OneToMany(mappedBy = "ingredientByIdIngredient")
-    public Collection<DishIngredient> getDishIngredientsById() {
-        return dishIngredientsById;
+    @OneToMany(mappedBy = "ingredient", fetch = FetchType.LAZY)
+    public Collection<DishIngredient> getDishes() {
+        return dishes;
     }
 
-    public void setDishIngredientsById(Collection<DishIngredient> dishIngredientsById) {
-        this.dishIngredientsById = dishIngredientsById;
+    public void setDishes(Collection<DishIngredient> dishes) {
+        this.dishes = dishes;
     }
 }

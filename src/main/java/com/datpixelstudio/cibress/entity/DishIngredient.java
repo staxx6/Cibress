@@ -7,10 +7,10 @@ import java.util.Objects;
 @Table(name = "dish_ingredient", schema = "cibress", catalog = "")
 public class DishIngredient {
     private int id;
-    private Integer quantityIngredient;
+    private Integer quantity;
     private Unit unit;
-    private Dish dishByIdDish;
-    private Ingredient ingredientByIdIngredient;
+    private Dish dish;
+    private Ingredient ingredient;
 
     @Id
     @Column(name = "id")
@@ -24,12 +24,12 @@ public class DishIngredient {
 
     @Basic
     @Column(name = "quantity_ingredient")
-    public Integer getQuantityIngredient() {
-        return quantityIngredient;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setQuantityIngredient(Integer quantityIngredient) {
-        this.quantityIngredient = quantityIngredient;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     @OneToOne
@@ -44,30 +44,33 @@ public class DishIngredient {
 
     @ManyToOne
     @JoinColumn(name = "id_dish", referencedColumnName = "id", nullable = false)
-    public Dish getDishByIdDish() {
-        return dishByIdDish;
+    public Dish getDish() {
+        return dish;
     }
 
-    public void setDishByIdDish(Dish dishByIdDish) {
-        this.dishByIdDish = dishByIdDish;
+    public void setDish(Dish dish) {
+        this.dish = dish;
     }
 
     @ManyToOne
     @JoinColumn(name = "id_ingredient", referencedColumnName = "id", nullable = false)
-    public Ingredient getIngredientByIdIngredient() {
-        return ingredientByIdIngredient;
+    public Ingredient getIngredient() {
+        return ingredient;
     }
 
-    public void setIngredientByIdIngredient(Ingredient ingredientByIdIngredient) {
-        this.ingredientByIdIngredient = ingredientByIdIngredient;
+    public void setIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DishIngredient that = (DishIngredient) o;
-        return id == that.id;
+    public String toString() {
+        return "DishIngredient{" +
+                "id=" + id +
+                ", quantity=" + quantity +
+                ", unit=" + unit +
+                ", dish=" + dish +
+                ", ingredient=" + ingredient +
+                '}';
     }
 
     @Override

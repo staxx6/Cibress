@@ -13,7 +13,7 @@ public class Dish {
     private boolean publicView;
     private List<DayEntryDish> dayEntryDishesById;
     private AnonymousComment anonymousCommentByIdAnonymousComment;
-    private List<DishIngredient> dishIngredientsById;
+    private List<DishIngredient> dishIngredient;
 
     @Id
     @Column(name = "id")
@@ -64,13 +64,13 @@ public class Dish {
         this.anonymousCommentByIdAnonymousComment = anonymousCommentByIdAnonymousComment;
     }
 
-    @OneToMany(mappedBy = "dishByIdDish")
-    public List<DishIngredient> getDishIngredientsById() {
-        return dishIngredientsById;
+    @OneToMany(mappedBy = "dish")
+    public List<DishIngredient> getDishIngredient() {
+        return dishIngredient;
     }
 
-    public void setDishIngredientsById(List<DishIngredient> dishIngredientsById) {
-        this.dishIngredientsById = dishIngredientsById;
+    public void setDishIngredient(List<DishIngredient> dishIngredient) {
+        this.dishIngredient = dishIngredient;
     }
 
     @Override

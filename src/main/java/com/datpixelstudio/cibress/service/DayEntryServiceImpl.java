@@ -1,5 +1,6 @@
 package com.datpixelstudio.cibress.service;
 
+import com.datpixelstudio.cibress.dao.DayEntryDishRepository;
 import com.datpixelstudio.cibress.dao.DayEntryRepository;
 import com.datpixelstudio.cibress.dto.DayEntryDto;
 import com.datpixelstudio.cibress.entity.AnonymousComment;
@@ -16,6 +17,9 @@ public class DayEntryServiceImpl implements DayEntryService {
 
     @Autowired
     DayEntryRepository dayEntryRepository;
+
+    @Autowired
+    DayEntryDishRepository dayEntryDishRepository;
 
     @Override
     public DayEntryDto findByDate(User user, LocalDate date) {
@@ -43,7 +47,11 @@ public class DayEntryServiceImpl implements DayEntryService {
     }
 
     @Override
-    public void addDish(DayEntryDish dayEntryDish) {
-        // TODO
+    public void newDishEntry(User user, DayEntryDish dayEntryDish) {
+
+        //DayEntry dayEntry = dayEntryRepository.findByUserAndEntryRecord(user, dayEntryDish.get)
+        //dayEntryDish.setDayEntryByIdDayEntry();
+
+        dayEntryDishRepository.save(dayEntryDish);
     }
 }

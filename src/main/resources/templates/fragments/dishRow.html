@@ -17,12 +17,12 @@
             <input class="day__entry-background day__dish-name-input" th:value="${dishEntry.dish.name}" />
             <p class="day__ingredients-title">Ingredients:</p>
 
-            <ul class="day__ingredients">
-                <div  th:each="ingredient : ${dishEntry.dish.dishIngredientsById}">
+            <ul th:id="'ingredientList-' + ${id}" class="day__ingredients">
+                <div  th:each="ingredient : ${dishEntry.dish.dishIngredient}">
                     <li class="day__ingredients-item" th:replace="fragments/dishRow :: ingredient(ingredientData=${ingredient})"></li>
                 </div>
-                <button class="btn btn--primary btn--primary--outline day__ingredients-item--add">+</button>
             </ul>
+            <button class="btn btn--primary btn--primary--outline day__ingredients-item--add" th:onclick="'newIngredient(' + ${id} + ')'">+</button>
 
             <p class="day__dish-comment-title">Comment/ Recipe:</p>
             <textarea class="no-input-style day__entry-background day__dish-comment-text" rows="4" cols="25" name="dayComment" maxlength="3000">TODO NO DATA BINDING HERE!</textarea>
@@ -37,9 +37,9 @@
 </li>
 
 <li th:fragment="ingredient (ingredientData)" class="day__ingredients-item">
-    <input class="day__entry-background day__ingredients-item--quantity" th:value="${ingredientData.quantityIngredient}" />
+    <input class="day__entry-background day__ingredients-item--quantity" th:value="${ingredientData.quantity}" />
     <input class="day__entry-background day__ingredients-item--quantity-unit" th:value="${ingredientData.unit.name}" />
-    <input class="day__entry-background day__ingredients-item--name" th:value="${ingredientData.ingredientByIdIngredient.name}" />
+    <input class="day__entry-background day__ingredients-item--name" th:value="${ingredientData.ingredient.name}" />
     <button class="btn day__ingredients-item--remove">x</button>
 </li>
 
