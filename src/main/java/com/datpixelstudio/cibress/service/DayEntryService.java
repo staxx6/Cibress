@@ -8,5 +8,6 @@ import java.time.LocalDate;
 
 public interface DayEntryService {
     DayEntryDto findByDate(User user, LocalDate day);
-    void newDishEntry(User user, DayEntryDish dayEntryDish);
+    long newDishEntry(String date, User user, DayEntryDish dayEntryDish);
+    long saveDayEntry(User user, DayEntryDto dayEntryDto);
 }

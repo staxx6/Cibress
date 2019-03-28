@@ -8,7 +8,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "dish")
 public class Dish {
-    private int id;
+    private long id;
     private String name;
     private boolean publicView;
     private List<DayEntryDish> dayEntryDishesById;
@@ -17,11 +17,11 @@ public class Dish {
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

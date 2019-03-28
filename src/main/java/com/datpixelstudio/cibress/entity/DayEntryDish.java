@@ -9,20 +9,20 @@ import java.util.Objects;
 @Table(name = "day_entry_dish", schema = "cibress", catalog = "")
 public class DayEntryDish {
 
-    private int id;
+    private long id;
     private LocalTime timeRecorded;
     private Integer quantityIngredient;
     private Unit unit;
-    private DayEntry dayEntryByIdDayEntry;
+    private DayEntry dayEntry;
     private Dish dish;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -58,12 +58,12 @@ public class DayEntryDish {
 
     @ManyToOne
     @JoinColumn(name = "id_day_entry", referencedColumnName = "id", nullable = false)
-    public DayEntry getDayEntryByIdDayEntry() {
-        return dayEntryByIdDayEntry;
+    public DayEntry getDayEntry() {
+        return dayEntry;
     }
 
-    public void setDayEntryByIdDayEntry(DayEntry dayEntryByIdDayEntry) {
-        this.dayEntryByIdDayEntry = dayEntryByIdDayEntry;
+    public void setDayEntry(DayEntry dayEntry) {
+        this.dayEntry = dayEntry;
     }
 
     @ManyToOne
@@ -96,7 +96,7 @@ public class DayEntryDish {
                 ", timeRecorded=" + timeRecorded +
                 ", quantityIngredient=" + quantityIngredient +
                 ", unit='" + unit + '\'' +
-                ", dayEntryByIdDayEntry=" + dayEntryByIdDayEntry +
+                ", dayEntryByIdDayEntry=" + dayEntry +
                 ", dish=" + dish +
                 '}';
     }

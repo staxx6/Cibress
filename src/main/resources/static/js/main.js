@@ -14,6 +14,8 @@ function getDayEntryShrink(toHide) {
 }
 
 function newDayDish() {
+    // console.log(date);
+
     let request = new XMLHttpRequest();
     request.onreadystatechange = () => {
         if(request.readyState === XMLHttpRequest.DONE) {
@@ -22,7 +24,7 @@ function newDayDish() {
             document.getElementById('dayList').appendChild(newDish);
         }
     }
-    request.open('GET', 'http://localhost:8080/newDayDish'); // TODO change link
+    request.open('GET', 'http://localhost:8080/newDayDish?date='); // TODO change link to non static
     request.send();
 }
 

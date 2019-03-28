@@ -7,6 +7,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalTime;
 
@@ -21,8 +22,13 @@ public class FragmentController {
     @Autowired
     DayEntryService dayEntryService;
 
+    // TODO (example) @Component
+    //@Scope("session")
+    //public class Cart { .. }
+    // for current date
+
     @GetMapping("/newDayDish")
-    public String newDayDish(@AuthenticationPrincipal User user, Model model) {
+    public String newDayDish(@PathVariable String date, @AuthenticationPrincipal User user, Model model) {
         DayEntryDish dayEntryDish = new DayEntryDish();
         dayEntryDish.setTimeRecorded(LocalTime.now());
         dayEntryDish.setUnit(new Unit("Portion", false));
@@ -32,9 +38,9 @@ public class FragmentController {
         dish.setName("Enter a new dish!");
         dayEntryDish.setDish(dish);
 
-        dayEntryService.newDishEntry(user, dayEntryDish);
+        long newId = dayEntryService.newDishEntry(date, user, dayEntryDish);
 
-        model.addAttribute("id", 0); // TODO after 'add' dayEntryDish has a new id?
+        model.addAttribute("id", newId); // TODO after 'add' dayEntryDish has a new id?
         model.addAttribute("dishEntry", dayEntryDish);
 
         return "fragments/dishRow :: dishRow";
@@ -51,6 +57,8 @@ public class FragmentController {
         dishIngredient.setIngredient(ingredient);
         dishIngredient.setUnit(new Unit("g", true));
         dishIngredient.setQuantity(100);
+
+
 
         model.addAttribute("ingredientData", dishIngredient);
 

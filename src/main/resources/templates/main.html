@@ -18,6 +18,7 @@
         <div class="day">
             <!-- TODO day title format 'Day Name - Date'-->
             <h1 class="day__title" th:text="${dayEntry.date}">Thursday 14.03.19</h1>
+
             <ol id="dayList" class="day__list">
 
                 <!-- 'th:each' works only in parent. (Not in li tag) not sure why -->
@@ -38,7 +39,7 @@
 
                 <!--</li>-->
             </ol>
-            <button class="btn btn--primary btn--primary--outline day__add-dish-button" onclick="newDayDish()">Add a dish</button>
+            <button class="btn btn--primary btn--primary--outline day__add-dish-button" th:onclick="'newDayDish()'">Add a dish</button>
 
             <div class="day__entry-background day__comment">
                 <h3 class="day__comment-title">Your Comment:</h3>

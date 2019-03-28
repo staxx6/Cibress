@@ -9,7 +9,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "day_entry", schema = "cibress", catalog = "")
 public class DayEntry {
-    private int id;
+    private long id;
     private LocalDate entryRecord;
     private User user;
     private AnonymousComment anonymousComment;
@@ -18,11 +18,11 @@ public class DayEntry {
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -56,7 +56,7 @@ public class DayEntry {
         this.anonymousComment = anonymousCommentByIdAnonymousComment;
     }
 
-    @OneToMany(mappedBy = "dayEntryByIdDayEntry")
+    @OneToMany(mappedBy = "dayEntry")
     public List<DayEntryDish> getDayEntryDishes() {
         return dayEntryDishes;
     }
