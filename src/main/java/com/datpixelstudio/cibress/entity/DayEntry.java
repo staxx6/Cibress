@@ -86,4 +86,14 @@ public class DayEntry {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        return "DayEntry{" +
+                "id=" + id +
+                ", entryRecord=" + entryRecord +
+                ", user=" + user +
+                ", anonymousComment=" + anonymousComment +
+                '}';
+    }
 }

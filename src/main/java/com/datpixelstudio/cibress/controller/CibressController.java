@@ -9,7 +9,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDate;
 
@@ -19,14 +18,17 @@ public class CibressController {
     @Autowired
     DayEntryService dayEntryService;
 
+    @Autowired
+    SessionData sessionData;
+
     @GetMapping("/today")
     public String getTodayDayEntry(@AuthenticationPrincipal User user, Model model) {
 
-//        System.out.println("Im doing something /today controller");
+        LocalDate localDate = LocalDate.now();
+        sessionData.setLocalDate(localDate);
 
 //        LocalDate dateWithData = LocalDate.of(2019,3, 10);
-        DayEntryDto dayEntryDto = dayEntryService.findByDate(user, LocalDate.now()); // LocalDate.now()
-//        System.out.println(dayEntryDto);
+        DayEntryDto dayEntryDto = dayEntryService.findByDate(user, localDate); // LocalDate.now()
         model.addAttribute("dayEntry", dayEntryDto);
 
         // Calender

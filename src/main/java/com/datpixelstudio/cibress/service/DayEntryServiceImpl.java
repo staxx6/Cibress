@@ -1,5 +1,6 @@
 package com.datpixelstudio.cibress.service;
 
+import com.datpixelstudio.cibress.dao.AnonymousCommentRepository;
 import com.datpixelstudio.cibress.dao.DayEntryDishRepository;
 import com.datpixelstudio.cibress.dao.DayEntryRepository;
 import com.datpixelstudio.cibress.dao.DishRepository;
@@ -8,7 +9,6 @@ import com.datpixelstudio.cibress.entity.AnonymousComment;
 import com.datpixelstudio.cibress.entity.DayEntry;
 import com.datpixelstudio.cibress.entity.DayEntryDish;
 import com.datpixelstudio.cibress.entity.User;
-import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +26,9 @@ public class DayEntryServiceImpl implements DayEntryService {
 
     @Autowired
     DishRepository dishRepository;
+
+    @Autowired
+    AnonymousCommentRepository anonymousCommentRepository;
 
     @Override
     public DayEntryDto findByDate(User user, LocalDate date) {
@@ -73,26 +76,36 @@ public class DayEntryServiceImpl implements DayEntryService {
         3. save the dayEntryDish
      */
     @Override
-    public long newDishEntry(String stringDate, User user, DayEntryDish dayEntryDish) {
+    public long newDishEntry(LocalDate localDate, User user, DayEntryDish dayEntryDish) {
 
-        // dish
-        dishRepository.save(dayEntryDish.getDish());
+        // --- dish
+        dishRepository.saveAndFlush(dayEntryDish.getDish());
 //        Long dishId = dayEntryDish.getDish().getId();
 
-        // dayEntry
-        LocalDate date = stringDateToLocalDate(stringDate);
+        // --- dayEntry
+        DayEntry dayEntry = dayEntryRepository.findByUserAndEntryRecord(user, localDate);
+        if(dayEntry == null) {
+            dayEntry = new DayEntry();
+            dayEntry.setUser(user);
+            AnonymousComment cmt = anonymousCommentRepository.findById(1L);
+            if(cmt == null) { // shouldn't happen
+                cmt = new AnonymousComment();
+                cmt.setText("Enter a new comment");
+                anonymousCommentRepository.save(cmt);
+            }
+            dayEntry.setAnonymousComment(cmt);
+        }
+        dayEntry.setEntryRecord(localDate);
+        dayEntryRepository.saveAndFlush(dayEntry);
+        dayEntryDish.setDayEntry(dayEntry);
 
-        DayEntry dayEntry = dayEntryDish.getDayEntry();
-        dayEntry.setEntryRecord(date);
-        dayEntryRepository.save(dayEntryDish.getDayEntry());
-//        Long dayEntryId = dayEntryDish.getDayEntry().getId();
-
-        // dayEntryDish
-        dayEntryDishRepository.save(dayEntryDish);
+        // --- dayEntryDish
+        dayEntryDishRepository.saveAndFlush(dayEntryDish);
 
         return dayEntryDish.getId();
     }
 
+    @Deprecated
     private LocalDate stringDateToLocalDate(String dateString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-yyyy");
         return LocalDate.parse(dateString, formatter);

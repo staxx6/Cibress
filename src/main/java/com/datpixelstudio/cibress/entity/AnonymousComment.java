@@ -7,18 +7,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "anonymous_comment", schema = "cibress", catalog = "")
 public class AnonymousComment {
-    private int id;
+    private long id;
     private String text;
-    private Collection<DayEntry> dayEntriesById;
-    private Collection<Dish> dishesById;
+    private Collection<DayEntry> dayEntries;
+    private Collection<Dish> dishes;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -47,20 +47,28 @@ public class AnonymousComment {
     }
 
     @OneToMany(mappedBy = "anonymousComment")
-    public Collection<DayEntry> getDayEntriesById() {
-        return dayEntriesById;
+    public Collection<DayEntry> dayEntries() {
+        return dayEntries;
     }
 
-    public void setDayEntriesById(Collection<DayEntry> dayEntriesById) {
-        this.dayEntriesById = dayEntriesById;
+    public void setDayEntries(Collection<DayEntry> dayEntriesById) {
+        this.dayEntries = dayEntries;
     }
 
-    @OneToMany(mappedBy = "anonymousCommentByIdAnonymousComment")
-    public Collection<Dish> getDishesById() {
-        return dishesById;
+    @OneToMany(mappedBy = "anonymousComment")
+    public Collection<Dish> getDishes() {
+        return dishes;
     }
 
-    public void setDishesById(Collection<Dish> dishesById) {
-        this.dishesById = dishesById;
+    public void setDishes(Collection<Dish> dishesById) {
+        this.dishes = dishes;
+    }
+
+    @Override
+    public String toString() {
+        return "AnonymousComment{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                '}';
     }
 }

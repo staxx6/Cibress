@@ -18,6 +18,7 @@ public class DayEntryDish {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
@@ -95,8 +96,8 @@ public class DayEntryDish {
                 "id=" + id +
                 ", timeRecorded=" + timeRecorded +
                 ", quantityIngredient=" + quantityIngredient +
-                ", unit='" + unit + '\'' +
-                ", dayEntryByIdDayEntry=" + dayEntry +
+                ", unit=" + unit +
+                ", dayEntry=" + dayEntry +
                 ", dish=" + dish +
                 '}';
     }

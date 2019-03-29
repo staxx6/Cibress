@@ -11,8 +11,8 @@ public class Dish {
     private long id;
     private String name;
     private boolean publicView;
-    private List<DayEntryDish> dayEntryDishesById;
-    private AnonymousComment anonymousCommentByIdAnonymousComment;
+    private List<DayEntryDish> dayEntryDishes;
+    private AnonymousComment anonymousComment;
     private List<DishIngredient> dishIngredient;
 
     @Id
@@ -46,22 +46,22 @@ public class Dish {
     }
 
     @OneToMany(mappedBy = "dish")
-    public List<DayEntryDish> getDayEntryDishesById() {
-        return dayEntryDishesById;
+    public List<DayEntryDish> getDayEntryDishes() {
+        return dayEntryDishes;
     }
 
-    public void setDayEntryDishesById(List<DayEntryDish> dayEntryDishesById) {
-        this.dayEntryDishesById = dayEntryDishesById;
+    public void setDayEntryDishes(List<DayEntryDish> dayEntryDishes) {
+        this.dayEntryDishes = dayEntryDishes;
     }
 
     @ManyToOne
     @JoinColumn(name = "id_anonymous_comment", referencedColumnName = "id")
-    public AnonymousComment getAnonymousCommentByIdAnonymousComment() {
-        return anonymousCommentByIdAnonymousComment;
+    public AnonymousComment getAnonymousComment() {
+        return anonymousComment;
     }
 
-    public void setAnonymousCommentByIdAnonymousComment(AnonymousComment anonymousCommentByIdAnonymousComment) {
-        this.anonymousCommentByIdAnonymousComment = anonymousCommentByIdAnonymousComment;
+    public void setAnonymousComment(AnonymousComment anonymousComment) {
+        this.anonymousComment = anonymousComment;
     }
 
     @OneToMany(mappedBy = "dish")
@@ -84,5 +84,15 @@ public class Dish {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Dish{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", publicView=" + publicView +
+                ", anonymousComment=" + anonymousComment +
+                '}';
     }
 }

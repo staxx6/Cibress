@@ -19,24 +19,25 @@ INSERT INTO unit VALUES (1, "Portion", "1");
 INSERT INTO unit VALUES (2, "Kg", "1");
 INSERT INTO unit VALUES (3, "L", "1");
 
-INSERT INTO ingredient VALUES (1, "Apfel", "0");
-INSERT INTO ingredient VALUES (2, "Birne", "0");
-INSERT INTO ingredient VALUES (3, "Kirsche", "0");
+INSERT INTO ingredient VALUES (1, "New ingredient", 0);
+INSERT INTO ingredient VALUES (2, "Birne", 0);
+INSERT INTO ingredient VALUES (3, "Kirsche", 0);
 
-INSERT INTO anonymous_comment VALUES (1, "Das ist absolut nöcht meine Lieblingspizza");
+INSERT INTO anonymous_comment VALUES (1, "Enter a comment");
 
-INSERT INTO dish VALUES (1, "Pizza", 0, 1);
+INSERT INTO dish VALUES (1, "New dish", 0, 1);
+INSERT INTO dish VALUES (2, "Pizza", 0, 1);
 
-INSERT INTO dish_ingredient VALUES (1, 1, 1, 50, 2);
-INSERT INTO dish_ingredient VALUES (2, 1, 2, 500, 3);
+INSERT INTO dish_ingredient VALUES (1, 2, 2, 50, 2);
+INSERT INTO dish_ingredient VALUES (2, 2, 3, 500, 3);
 
 INSERT INTO day_entry VALUES (1, 1, CURDATE(), 1);
 INSERT INTO day_entry VALUES (2, 1, DATE_SUB(CURDATE(), INTERVAL 1 DAY ), 1);
 
-INSERT INTO day_entry_dish VALUES (1, 1, 1, CURTIME(), 1, 1);
-INSERT INTO day_entry_dish VALUES (2, 1, 1, CURTIME(), 1, 1);
-INSERT INTO day_entry_dish VALUES (3, 1, 1, CURTIME(), 1, 1);
-INSERT INTO day_entry_dish VALUES (4, 2, 1, CURTIME(), 1, 1);
+INSERT INTO day_entry_dish VALUES (1, 1, 2, CURTIME(), 1, 1);
+INSERT INTO day_entry_dish VALUES (2, 1, 2, CURTIME(), 1, 1);
+INSERT INTO day_entry_dish VALUES (3, 1, 2, CURTIME(), 1, 1);
+INSERT INTO day_entry_dish VALUES (4, 2, 2, CURTIME(), 1, 1);
 
 INSERT INTO symptom_name VALUES (1, "everyting hurts", 1);
 
