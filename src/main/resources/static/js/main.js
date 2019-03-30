@@ -42,6 +42,38 @@ function newIngredient(id) {
     request.send();
 }
 
+function saveDayDish(id) {
+    console.log("saveDayDishId: " + id);
+    let request = new XMLHttpRequest();
+    request.onreadystatechange = () => {
+        if(request.readyState === XMLHttpRequest.DONE) {
+            if(request.status !== 200) {
+                console.log('Something went wrong. Dish is not saved! Code:' + request.status);
+            }
+        }
+    }
+    // TODO change to real data
+    let ingredient = {
+        name: 'ingredient name'
+    };
+
+    let dish = {
+        id: 0,
+        localTime: 0,
+        dishName: 'name',
+        ingredients: ingredient,
+        commentText: 'comment text',
+        quantity: 1,
+        unit: 'g'
+    };
+
+    request.open('POST', 'http://localhost:8080/saveDishRow'); // TODO change link
+    request.setRequestHeader("Content-Type", "application/json");
+
+    console.log('trying to send dish: ' + JSON.stringify(dish));
+    request.send(JSON.stringify(dish));
+}
+
 // Open the registration popup if there was an error
 // let url = window.location.href.split("/")[window.location.href.split("/").length - 1];
 // console.log(url);

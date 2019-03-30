@@ -96,12 +96,23 @@ public class DayEntryServiceImpl implements DayEntryService {
             dayEntry.setAnonymousComment(cmt);
         }
         dayEntry.setEntryRecord(localDate);
-        dayEntryRepository.saveAndFlush(dayEntry);
+        dayEntryRepository.saveAndFlush(dayEntry); // TODO ID is not updated
         dayEntryDish.setDayEntry(dayEntry);
 
         // --- dayEntryDish
+        System.out.println("DayEntryService: " + dayEntryDish);
         dayEntryDishRepository.saveAndFlush(dayEntryDish);
 
+        return dayEntryDish.getId();
+    }
+
+    @Override
+    public long saveDayEntryDish(User user, DayEntryDish dayEntryDish) {
+        DayEntryDish dataBaseEntryDish = dayEntryDishRepository.findById(dayEntryDish.getId()).get();
+        if(dataBaseEntryDish.getDayEntry().getUser().getId() != user.getId()) {
+            return -1; // TODO should throw an exception - User not allowed to save with this dayEntryDish (wrong id)
+        }
+        dayEntryDishRepository.saveAndFlush(dayEntryDish);
         return dayEntryDish.getId();
     }
 

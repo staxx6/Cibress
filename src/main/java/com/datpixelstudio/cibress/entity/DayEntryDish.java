@@ -10,11 +10,11 @@ import java.util.Objects;
 public class DayEntryDish {
 
     private long id;
-    private LocalTime timeRecorded;
-    private Integer quantityIngredient;
-    private Unit unit;
-    private DayEntry dayEntry;
     private Dish dish;
+    private DayEntry dayEntry;
+    private LocalTime timeRecorded;
+    private Unit unit;
+    private Integer quantityIngredient;
 
     @Id
     @Column(name = "id")

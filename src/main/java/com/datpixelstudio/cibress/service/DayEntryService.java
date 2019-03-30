@@ -10,4 +10,5 @@ public interface DayEntryService {
     DayEntryDto findByDate(User user, LocalDate day);
     long newDishEntry(LocalDate date, User user, DayEntryDish dayEntryDish);
     long saveDayEntry(User user, DayEntryDto dayEntryDto);
+    long saveDayEntryDish(User user, DayEntryDish dayEntryDish);
 }

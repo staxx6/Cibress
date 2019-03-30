@@ -15,9 +15,10 @@ DELETE FROM user;
 INSERT INTO user VALUES (1, "root", "{noop}root", "root@email.de", "ROLE_ADMIN");
 INSERT INTO user VALUES (2, "staxx6", "{noop}staxx6", "staxx@hotmail.de", "ROLE_USER");
 
-INSERT INTO unit VALUES (1, "Portion", "1");
-INSERT INTO unit VALUES (2, "Kg", "1");
-INSERT INTO unit VALUES (3, "L", "1");
+INSERT INTO unit VALUES (1, "Portion", 0);
+INSERT INTO unit VALUES (2, "g", 1);
+INSERT INTO unit VALUES (3, "Kg", 1);
+INSERT INTO unit VALUES (4, "L", 1);
 
 INSERT INTO ingredient VALUES (1, "New ingredient", 0);
 INSERT INTO ingredient VALUES (2, "Birne", 0);

@@ -26,7 +26,7 @@ public class Month {
         this.dayEntryService = service;
         days = new ArrayList<>(35);
 
-        for(int i = 1; i < date.lengthOfMonth(); i++) {
+        for(int i = 1; i < date.lengthOfMonth() + 1; i++) {
             LocalDate newDate = LocalDate.of(date.getYear(), month, i);
 
             DayEntryDto dayEntryDto =  dayEntryService.findByDate(user, newDate);
@@ -37,7 +37,7 @@ public class Month {
                     newDay.setToday(true);
                 }
                 addDay(newDay);
-                continue;
+                continue; // Day is new = no symptoms -> restart loop
             }
 
             int a = 0;

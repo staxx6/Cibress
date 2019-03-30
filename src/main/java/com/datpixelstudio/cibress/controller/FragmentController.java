@@ -1,6 +1,8 @@
 package com.datpixelstudio.cibress.controller;
 
+import com.datpixelstudio.cibress.dao.DishIngredientRepository;
 import com.datpixelstudio.cibress.dao.DishRepository;
+import com.datpixelstudio.cibress.dao.IngredientRepository;
 import com.datpixelstudio.cibress.dao.UnitRepository;
 import com.datpixelstudio.cibress.entity.*;
 import com.datpixelstudio.cibress.service.DayEntryService;
@@ -32,6 +34,12 @@ public class FragmentController {
     @Autowired
     DishRepository dishRepository;
 
+    @Autowired
+    IngredientRepository ingredientRepository;
+
+    @Autowired
+    DishIngredientRepository dishIngredientRepository;
+
     @GetMapping("/newDayDish")
     public String newDayDish(@AuthenticationPrincipal User user, Model model) {
         DayEntryDish dayEntryDish = new DayEntryDish();
@@ -42,7 +50,6 @@ public class FragmentController {
         dayEntryDish.setDish(dishRepository.findById(1L).get());
 
         long newId = dayEntryService.newDishEntry(sessionData.getLocalDate(), user, dayEntryDish);
-        System.out.println("id for DishEntry: " + dayEntryDish.getId());
 
         model.addAttribute("id", newId); // TODO after 'add' dayEntryDish has a new id?
         model.addAttribute("dishEntry", dayEntryDish);
@@ -54,13 +61,12 @@ public class FragmentController {
     public String newIngredient(Model model) {
         DishIngredient dishIngredient = new DishIngredient();
 
-        Ingredient ingredient = new Ingredient();
-        ingredient.setName("Enter a new ingredient!");
-        ingredient.setPublicView(false);
+        dishIngredient.setIngredient(ingredientRepository.findById(1L).get());
 
-        dishIngredient.setIngredient(ingredient);
-        dishIngredient.setUnit(new Unit("g", true));
+        dishIngredient.setUnit(unitRepository.findById(1L).get());
         dishIngredient.setQuantity(100);
+
+        //dishIngredientRepository.saveAndFlush(dishIngredient); // TODO need it?
 
         model.addAttribute("ingredientData", dishIngredient);
 

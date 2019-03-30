@@ -32,7 +32,7 @@
 
     <input class="day__entry-background day__row-quantity" th:value="${dishEntry.quantityIngredient}" />
     <input class="day__entry-background day__row-quantity-unit" th:value="${dishEntry.unit.name}" />
-    <button class="btn btn--primary btn--primary--outline day__row-save">&#10004</button>
+    <button class="btn btn--primary btn--primary--outline day__row-save" th:onclick="'saveDayDish(' + ${id} + ')'">&#10004</button>
     <button class="day__background day__row-remove">x</button>
 </li>
 
