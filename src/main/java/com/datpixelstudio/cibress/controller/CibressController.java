@@ -3,7 +3,6 @@ package com.datpixelstudio.cibress.controller;
 import com.datpixelstudio.cibress.calender.Month;
 import com.datpixelstudio.cibress.dto.DayEntryDishDto;
 import com.datpixelstudio.cibress.dto.DayEntryDto;
-import com.datpixelstudio.cibress.entity.DayEntryDish;
 import com.datpixelstudio.cibress.entity.User;
 import com.datpixelstudio.cibress.service.DayEntryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,11 +51,11 @@ public class CibressController {
     }
 
     @PostMapping("/saveDishRow")
-    public DayEntryDishDto saveDishRow(@RequestBody DayEntryDishDto dayEntryDishDto) {
+    public DayEntryDishDto saveDishRow(@AuthenticationPrincipal User user, @RequestBody DayEntryDishDto dayEntryDishDto) {
 
-        System.out.println(dayEntryDishDto);
+        System.out.println("controller saveDishRow DTO: " + dayEntryDishDto);
+        dayEntryService.saveDayEntryDish(user, sessionData.getLocalDate(), dayEntryDishDto);
 
-//        dayEntryService.saveDayEntryDish(user, dayEntryDish);
         return dayEntryDishDto;
     }
 

@@ -1,14 +1,9 @@
 package com.datpixelstudio.cibress.service;
 
-import com.datpixelstudio.cibress.dao.AnonymousCommentRepository;
-import com.datpixelstudio.cibress.dao.DayEntryDishRepository;
-import com.datpixelstudio.cibress.dao.DayEntryRepository;
-import com.datpixelstudio.cibress.dao.DishRepository;
+import com.datpixelstudio.cibress.dao.*;
+import com.datpixelstudio.cibress.dto.DayEntryDishDto;
 import com.datpixelstudio.cibress.dto.DayEntryDto;
-import com.datpixelstudio.cibress.entity.AnonymousComment;
-import com.datpixelstudio.cibress.entity.DayEntry;
-import com.datpixelstudio.cibress.entity.DayEntryDish;
-import com.datpixelstudio.cibress.entity.User;
+import com.datpixelstudio.cibress.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +24,12 @@ public class DayEntryServiceImpl implements DayEntryService {
 
     @Autowired
     AnonymousCommentRepository anonymousCommentRepository;
+
+    @Autowired
+    DishIngredientRepository dishIngredientRepository;
+
+    @Autowired
+    IngredientRepository ingredientRepository;
 
     @Override
     public DayEntryDto findByDate(User user, LocalDate date) {
@@ -106,14 +107,52 @@ public class DayEntryServiceImpl implements DayEntryService {
         return dayEntryDish.getId();
     }
 
+    // TODO null handling by DB not found queries
     @Override
-    public long saveDayEntryDish(User user, DayEntryDish dayEntryDish) {
-        DayEntryDish dataBaseEntryDish = dayEntryDishRepository.findById(dayEntryDish.getId()).get();
-        if(dataBaseEntryDish.getDayEntry().getUser().getId() != user.getId()) {
-            return -1; // TODO should throw an exception - User not allowed to save with this dayEntryDish (wrong id)
+    public long saveDayEntryDish(User user, LocalDate localDate, DayEntryDishDto dayEntryDishDto) {
+
+        // --- Is Id correct / user is authenticated?
+        DayEntryDish toSaveEntryDish = dayEntryDishRepository.findById(dayEntryDishDto.getId()).get();
+
+        if(toSaveEntryDish == null ||
+                toSaveEntryDish.getDayEntry().getUser().getId() != user.getId()) {
+            System.out.println("DayEntryService: Couldn't save dayEntryDish.");
+            return -1; // TODO should throw an exception - User not allowed to save with this dayEntryDish (wrong id or user)
         }
-        dayEntryDishRepository.saveAndFlush(dayEntryDish);
-        return dayEntryDish.getId();
+
+        // -- 1. save ingredients // TODO NO USER CHECK!
+        if(dayEntryDishDto.getDishIngredients() != null) {
+            for(DishIngredient dishIngredient : dayEntryDishDto.getDishIngredients()) {
+                // TODO nullptr here: 
+                Ingredient ingredient = ingredientRepository.findByName(dishIngredient.getIngredient().getName());
+                if(ingredient == null) {
+                    ingredient = new Ingredient();
+                    ingredient.setName(dishIngredient.getIngredient().getName());
+                    ingredient.setPublicView(false);
+                }
+                dishIngredient.setIngredient(ingredient);
+                ingredientRepository.saveAndFlush(ingredient);
+            }
+        }
+
+        // --- Find Dish or create it // TODO NO USER CHECK!
+        Dish dish = dishRepository.findByName(dayEntryDishDto.getDishName());
+        if(dish == null) {
+            dish = new Dish();
+            dish.setName(dayEntryDishDto.getDishName());
+            dish.setAnonymousComment(anonymousCommentRepository.findById(1L));
+            dish.setPublicView(false);
+        }
+        dish.setDishIngredient(dayEntryDishDto.getDishIngredients());
+        dishRepository.saveAndFlush(dish);
+
+        toSaveEntryDish.setDish(dish);
+
+        dayEntryDishRepository.saveAndFlush(toSaveEntryDish);
+
+        // TODO unit is missing!
+
+        return toSaveEntryDish.getId();
     }
 
     @Deprecated

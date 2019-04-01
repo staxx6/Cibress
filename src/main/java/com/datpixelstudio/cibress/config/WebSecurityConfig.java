@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .anyRequest().authenticated() // all request must be logged in
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().permitAll()
-                .and().httpBasic().and().csrf().disable();
+                .and().httpBasic().and().csrf().disable(); // TODO SECURITY WARNING! ONLY FOR DEVELOPING
 
         // TODO SECURITY WARNING! ONLY FOR DEVELOPING
         http.headers().frameOptions().disable();
@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.httpBasic().authenticationEntryPoint(authenticationEntryPoint);
     }
 
-    // TODO password encryption
+    // TODO SECURITY WARNING! password encryption
 //    @Bean
 //    public PasswordEncoder passwordEncoder() {
 //        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();

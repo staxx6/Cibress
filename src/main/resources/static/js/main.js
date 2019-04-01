@@ -52,26 +52,47 @@ function saveDayDish(id) {
             }
         }
     }
-    // TODO change to real data
-    let ingredient = {
-        name: 'ingredient name'
-    };
 
-    let dish = {
-        id: 0,
-        localTime: 0,
-        dishName: 'name',
-        ingredients: ingredient,
-        commentText: 'comment text',
-        quantity: 1,
-        unit: 'g'
+    // TODO sometime i don't get js
+    let ingredientList = document.getElementById('ingredientList-' + id).getElementsByTagName('li'); // DIV (around li)
+    // console.log('ingredientList: ' + ingredientList);
+    // console.log('ingredientList[0]: ' + ingredientList[0]);
+    // console.log('ingredients[0 ' + ingredients.children.());
+
+    let ingredientsToSave = [];
+
+    for(let i = 0; i < ingredientList.length; i++) {
+        // console.log(ingredientList.item(i));
+        // console.log("0 " + ingredientList.item(i).children[0].getAttributeNode('value').value);
+        // console.log("1 " + ingredientList.item(i).children[1].getAttributeNode('value').value);
+        // console.log("2 " + ingredientList.item(i).children[2].getAttributeNode('value').value);
+        let ingredientToSave = {
+            quantity: ingredientList.item(i).children[0].getAttributeNode('value').value,
+            unit: {
+                name: ingredientList.item(i).children[1].getAttributeNode('value').value,
+            },
+            name: ingredientList.item(i).children[2].getAttributeNode('value').value
+        };
+        ingredientsToSave.push(ingredientToSave);
+    }
+
+    let dayEntryDish = {
+        id: id,
+        localTime: document.getElementById('dish-time-' + id).getAttributeNode('value').value,
+        dishName: document.getElementById('dish-name-' + id).getAttributeNode('value').value,
+        dishIngredients: ingredientsToSave,
+        commentText: document.getElementById('dish-cmt-' + id).innerText,
+        quantity: document.getElementById('dish-quantity-' + id).getAttributeNode('value').value,
+        unit: {
+            name: document.getElementById('dish-unit-' + id).getAttributeNode('value').value
+        }
     };
 
     request.open('POST', 'http://localhost:8080/saveDishRow'); // TODO change link
     request.setRequestHeader("Content-Type", "application/json");
 
-    console.log('trying to send dish: ' + JSON.stringify(dish));
-    request.send(JSON.stringify(dish));
+    console.log('trying to send dish: ' + JSON.stringify(dayEntryDish));
+    request.send(JSON.stringify(dayEntryDish));
 }
 
 // Open the registration popup if there was an error

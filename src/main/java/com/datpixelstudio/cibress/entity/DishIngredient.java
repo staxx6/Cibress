@@ -6,7 +6,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "dish_ingredient", schema = "cibress", catalog = "")
 public class DishIngredient {
-    private int id;
+    private long id;
     private Integer quantity;
     private Unit unit;
     private Dish dish;
@@ -14,11 +14,12 @@ public class DishIngredient {
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

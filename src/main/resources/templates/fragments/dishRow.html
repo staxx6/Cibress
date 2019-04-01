@@ -3,7 +3,7 @@
 
 <li th:fragment="dishRow (id, dishEntry)" class="day__row">
     <!-- dishTime- -->
-    <input class="day__entry-background day__row-time" value="22:38" th:name="'dishTime-' + ${id}"/>
+    <input th:id="'dish-time-' + ${id}" class="day__entry-background day__row-time" value="22:38" th:name="'dishTime-' + ${id}"/>
 
     <!-- DEV: switch next 3 rows comments-->
     <!--<div id="dayEntry1ContentHidden" class="day__row-content day__row-content&#45;&#45;extended">-->
@@ -14,7 +14,7 @@
         <div class="day__dish">
 
             <p class="day__dish-name-title">Name:</p>
-            <input class="day__entry-background day__dish-name-input" th:value="${dishEntry.dish.name}" />
+            <input th:id="'dish-name-' + ${id}" class="day__entry-background day__dish-name-input" th:value="${dishEntry.dish.name}" />
             <p class="day__ingredients-title">Ingredients:</p>
 
             <ul th:id="'ingredientList-' + ${id}" class="day__ingredients">
@@ -25,13 +25,13 @@
             <button class="btn btn--primary btn--primary--outline day__ingredients-item--add" th:onclick="'newIngredient(' + ${id} + ')'">+</button>
 
             <p class="day__dish-comment-title">Comment/ Recipe:</p>
-            <textarea class="no-input-style day__entry-background day__dish-comment-text" rows="4" cols="25" name="dayComment" maxlength="3000">TODO NO DATA BINDING HERE!</textarea>
+            <textarea th:id="'dish-cmt-' + ${id}" class="no-input-style day__entry-background day__dish-comment-text" rows="4" cols="25" name="dayComment" maxlength="3000">TODO NO DATA BINDING HERE!</textarea>
 
         </div>
     </div>
 
-    <input class="day__entry-background day__row-quantity" th:value="${dishEntry.quantityIngredient}" />
-    <input class="day__entry-background day__row-quantity-unit" th:value="${dishEntry.unit.name}" />
+    <input th:id="'dish-quantity-' + ${id}" class="day__entry-background day__row-quantity" th:value="${dishEntry.quantityIngredient}" />
+    <input th:id="'dish-unit-' + ${id}" class="day__entry-background day__row-quantity-unit" th:value="${dishEntry.unit.name}" />
     <button class="btn btn--primary btn--primary--outline day__row-save" th:onclick="'saveDayDish(' + ${id} + ')'">&#10004</button>
     <button class="day__background day__row-remove">x</button>
 </li>

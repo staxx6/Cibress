@@ -6,4 +6,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource(path = "dishes")
 public interface DishRepository extends JpaRepository<Dish, Long> {
+    Dish findByName(String name);
 }

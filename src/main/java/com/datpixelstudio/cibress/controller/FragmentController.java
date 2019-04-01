@@ -16,8 +16,8 @@ import java.time.LocalTime;
 
 /*
     This controller returns thymeleaf fragments via ajax.
-    I think it's not a good design but I don't know a better way
-    to load fragments via JavaScript
+    I think it's not a good design but don't know a better way
+    to load fragments via JavaScript.
  */
 @Controller
 public class FragmentController {
@@ -66,7 +66,7 @@ public class FragmentController {
         dishIngredient.setUnit(unitRepository.findById(1L).get());
         dishIngredient.setQuantity(100);
 
-        //dishIngredientRepository.saveAndFlush(dishIngredient); // TODO need it?
+        dishIngredientRepository.saveAndFlush(dishIngredient);
 
         model.addAttribute("ingredientData", dishIngredient);
 
