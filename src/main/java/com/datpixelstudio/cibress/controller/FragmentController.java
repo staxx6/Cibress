@@ -1,9 +1,6 @@
 package com.datpixelstudio.cibress.controller;
 
-import com.datpixelstudio.cibress.dao.DishIngredientRepository;
-import com.datpixelstudio.cibress.dao.DishRepository;
-import com.datpixelstudio.cibress.dao.IngredientRepository;
-import com.datpixelstudio.cibress.dao.UnitRepository;
+import com.datpixelstudio.cibress.dao.*;
 import com.datpixelstudio.cibress.entity.*;
 import com.datpixelstudio.cibress.service.DayEntryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +8,10 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalTime;
+import java.util.Optional;
 
 /*
     This controller returns thymeleaf fragments via ajax.
@@ -40,6 +39,9 @@ public class FragmentController {
     @Autowired
     DishIngredientRepository dishIngredientRepository;
 
+    @Autowired
+    DayEntryDishRepository dayEntryDishRepository;
+
     @GetMapping("/newDayDish")
     public String newDayDish(@AuthenticationPrincipal User user, Model model) {
         DayEntryDish dayEntryDish = new DayEntryDish();
@@ -51,20 +53,34 @@ public class FragmentController {
 
         long newId = dayEntryService.newDishEntry(sessionData.getLocalDate(), user, dayEntryDish);
 
-        model.addAttribute("id", newId); // TODO after 'add' dayEntryDish has a new id?
+        model.addAttribute("id", newId);
         model.addAttribute("dishEntry", dayEntryDish);
 
         return "fragments/dishRow :: dishRow";
     }
 
     @GetMapping("/newIngredient")
-    public String newIngredient(Model model) {
+    public String newIngredient(Model model, long dishId) {
         DishIngredient dishIngredient = new DishIngredient();
 
         dishIngredient.setIngredient(ingredientRepository.findById(1L).get());
-
-        dishIngredient.setUnit(unitRepository.findById(1L).get());
+        dishIngredient.setUnit(unitRepository.findById(2L).get());
         dishIngredient.setQuantity(100);
+
+        System.out.println("Looking for dish: " + dishId);
+        Optional<DayEntryDish> dayEntryDish = dayEntryDishRepository.findById(dishId);
+        if(dayEntryDish.isPresent()) {
+            dishIngredient.setDish(dayEntryDish.get().getDish());
+        } else {
+            System.out.println("Dish not found!"); // TODO should throw an exception
+        }
+
+//        Optional<Dish> optionalDish = dishRepository.findById(dishId);
+//        if(optionalDish.isPresent()) {
+//            dishIngredient.setDish(optionalDish.get());
+//        } else {
+//            System.out.println("Dish not found!"); // TODO should throw an exception
+//        }
 
         dishIngredientRepository.saveAndFlush(dishIngredient);
 

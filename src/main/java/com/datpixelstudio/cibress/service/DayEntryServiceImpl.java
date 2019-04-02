@@ -3,12 +3,17 @@ package com.datpixelstudio.cibress.service;
 import com.datpixelstudio.cibress.dao.*;
 import com.datpixelstudio.cibress.dto.DayEntryDishDto;
 import com.datpixelstudio.cibress.dto.DayEntryDto;
+import com.datpixelstudio.cibress.dto.DishIngredientDto;
 import com.datpixelstudio.cibress.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NonUniqueResultException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DayEntryServiceImpl implements DayEntryService {
@@ -30,6 +35,9 @@ public class DayEntryServiceImpl implements DayEntryService {
 
     @Autowired
     IngredientRepository ingredientRepository;
+
+    @Autowired
+    UnitRepository unitRepository;
 
     @Override
     public DayEntryDto findByDate(User user, LocalDate date) {
@@ -120,18 +128,23 @@ public class DayEntryServiceImpl implements DayEntryService {
             return -1; // TODO should throw an exception - User not allowed to save with this dayEntryDish (wrong id or user)
         }
 
-        // -- 1. save ingredients // TODO NO USER CHECK!
-        if(dayEntryDishDto.getDishIngredients() != null) {
-            for(DishIngredient dishIngredient : dayEntryDishDto.getDishIngredients()) {
-                // TODO nullptr here: 
-                Ingredient ingredient = ingredientRepository.findByName(dishIngredient.getIngredient().getName());
+        List<Ingredient> dishIngredients = new ArrayList<>();
+
+        // --- Save ingredients // TODO NO USER CHECK!
+        if(dayEntryDishDto.getDishIngredientDtos() != null) {
+            for(DishIngredientDto dishIngredientDto : dayEntryDishDto.getDishIngredientDtos()) {
+
+                System.out.println("Ingredient name: " + dishIngredientDto);
+
+                Ingredient ingredient = ingredientRepository.findByName(dishIngredientDto.getName());
+
                 if(ingredient == null) {
                     ingredient = new Ingredient();
-                    ingredient.setName(dishIngredient.getIngredient().getName());
+                    ingredient.setName(dishIngredientDto.getName());
                     ingredient.setPublicView(false);
                 }
-                dishIngredient.setIngredient(ingredient);
                 ingredientRepository.saveAndFlush(ingredient);
+                dishIngredients.add(ingredient);
             }
         }
 
@@ -143,14 +156,40 @@ public class DayEntryServiceImpl implements DayEntryService {
             dish.setAnonymousComment(anonymousCommentRepository.findById(1L));
             dish.setPublicView(false);
         }
-        dish.setDishIngredient(dayEntryDishDto.getDishIngredients());
         dishRepository.saveAndFlush(dish);
 
         toSaveEntryDish.setDish(dish);
 
-        dayEntryDishRepository.saveAndFlush(toSaveEntryDish);
+        for(Ingredient ingredient : dishIngredients) {
+            DishIngredient dishIngredient = null;
+            try { // srsly bad
+                dishIngredient = dishIngredientRepository.findByDishAndIngredient(dish, ingredient);
+            } catch (Exception ex) {
+            }
+            if(dishIngredient == null) {
+                dishIngredient = new DishIngredient();
+                dishIngredient.setDish(dish);
+                dishIngredient.setIngredient(ingredient);
+            }
+            for(DishIngredientDto dishIngredientDto : dayEntryDishDto.getDishIngredientDtos()) {
+                if(dishIngredientDto.getName().equals(ingredient.getName())) {
+                    dishIngredient.setQuantity(dishIngredientDto.getQuantity());
 
-        // TODO unit is missing!
+                    Unit unit = unitRepository.findByName(dishIngredientDto.getUnit().getName());
+                    if(unit == null) {
+                        unit = new Unit();
+                        unit.setName(dishIngredientDto.getUnit().getName());
+                        unit.setShortName(true);
+                        unitRepository.saveAndFlush(unit);
+                    }
+
+                    dishIngredient.setUnit(unit);
+                }
+            }
+            dishIngredientRepository.saveAndFlush(dishIngredient);
+        }
+
+        dayEntryDishRepository.saveAndFlush(toSaveEntryDish);
 
         return toSaveEntryDish.getId();
     }

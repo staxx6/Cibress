@@ -38,7 +38,7 @@ function newIngredient(id) {
             document.getElementById('ingredientList-' + id).appendChild(newIngredient);
         }
     }
-    request.open('GET', 'http://localhost:8080/newIngredient'); // TODO change link
+    request.open('GET', 'http://localhost:8080/newIngredient?dishId=' + id); // TODO change link
     request.send();
 }
 
@@ -48,7 +48,7 @@ function saveDayDish(id) {
     request.onreadystatechange = () => {
         if(request.readyState === XMLHttpRequest.DONE) {
             if(request.status !== 200) {
-                console.log('Something went wrong. Dish is not saved! Code:' + request.status);
+                console.log('Something went wrong. Dish is not saved! Code: ' + request.responseText);
             }
         }
     }
@@ -67,24 +67,24 @@ function saveDayDish(id) {
         // console.log("1 " + ingredientList.item(i).children[1].getAttributeNode('value').value);
         // console.log("2 " + ingredientList.item(i).children[2].getAttributeNode('value').value);
         let ingredientToSave = {
-            quantity: ingredientList.item(i).children[0].getAttributeNode('value').value,
+            quantity: ingredientList.item(i).children[0].value,
             unit: {
-                name: ingredientList.item(i).children[1].getAttributeNode('value').value,
+                name: ingredientList.item(i).children[1].value,
             },
-            name: ingredientList.item(i).children[2].getAttributeNode('value').value
+            name: ingredientList.item(i).children[2].value,
         };
         ingredientsToSave.push(ingredientToSave);
     }
 
     let dayEntryDish = {
         id: id,
-        localTime: document.getElementById('dish-time-' + id).getAttributeNode('value').value,
-        dishName: document.getElementById('dish-name-' + id).getAttributeNode('value').value,
-        dishIngredients: ingredientsToSave,
+        localTime: document.getElementById('dish-time-' + id).value,
+        dishName: document.getElementById('dish-name-' + id).value,
+        dishIngredientDtos: ingredientsToSave,
         commentText: document.getElementById('dish-cmt-' + id).innerText,
-        quantity: document.getElementById('dish-quantity-' + id).getAttributeNode('value').value,
+        quantity: document.getElementById('dish-quantity-' + id).value,
         unit: {
-            name: document.getElementById('dish-unit-' + id).getAttributeNode('value').value
+            name: document.getElementById('dish-unit-' + id).value
         }
     };
 

@@ -1,6 +1,5 @@
 package com.datpixelstudio.cibress.dto;
 
-import com.datpixelstudio.cibress.entity.DishIngredient;
 import com.datpixelstudio.cibress.entity.Unit;
 
 import java.time.LocalTime;
@@ -11,7 +10,7 @@ public class DayEntryDishDto {
     private long id;
     private LocalTime localTime;
     private String dishName;
-    private List<DishIngredient> dishIngredients;
+    private List<DishIngredientDto> dishIngredientDtos;
     private String commentText;
     private int quantity;
     private Unit unit;
@@ -40,12 +39,12 @@ public class DayEntryDishDto {
         this.dishName = dishName;
     }
 
-    public List<DishIngredient> getDishIngredients() {
-        return dishIngredients;
+    public List<DishIngredientDto> getDishIngredientDtos() {
+        return dishIngredientDtos;
     }
 
-    public void setDishIngredients(List<DishIngredient> dishIngredients) {
-        this.dishIngredients = dishIngredients;
+    public void setDishIngredientDtos(List<DishIngredientDto> dishIngredientDtos) {
+        this.dishIngredientDtos = dishIngredientDtos;
     }
 
     public String getCommentText() {
@@ -78,7 +77,7 @@ public class DayEntryDishDto {
                 "id=" + id +
                 ", localTime=" + localTime +
                 ", dishName='" + dishName + '\'' +
-                ", ingredients=" + dishIngredients +
+                ", ingredients=" + dishIngredientDtos +
                 ", commentText='" + commentText + '\'' +
                 ", quantity=" + quantity +
                 ", unit='" + unit + '\'' +

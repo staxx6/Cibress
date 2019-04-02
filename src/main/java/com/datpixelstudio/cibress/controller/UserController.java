@@ -24,7 +24,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/registration")
-    public String registration( Model model) {
+    public String registration(Model model) {
 
         System.out.println("get /registration");
 

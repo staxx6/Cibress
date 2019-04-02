@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDate;
 
@@ -42,7 +43,7 @@ public class CibressController {
     public String getDayEntry(int year, int month, int day,
               @AuthenticationPrincipal User user, Model model) {
 
-        LocalDate localDate = LocalDate.of(year, month, day); // TODO wrong input
+        LocalDate localDate = LocalDate.of(year, month, day); // TODO handle wrong input
         sessionData.setLocalDate(localDate);
 
         generateDayAndCalender(user, localDate, model);
@@ -51,10 +52,12 @@ public class CibressController {
     }
 
     @PostMapping("/saveDishRow")
+    @ResponseBody
     public DayEntryDishDto saveDishRow(@AuthenticationPrincipal User user, @RequestBody DayEntryDishDto dayEntryDishDto) {
 
         System.out.println("controller saveDishRow DTO: " + dayEntryDishDto);
         dayEntryService.saveDayEntryDish(user, sessionData.getLocalDate(), dayEntryDishDto);
+        System.out.println("controller end /saveDishRow");
 
         return dayEntryDishDto;
     }

@@ -6,18 +6,19 @@ import java.util.Objects;
 
 @Entity
 public class Ingredient {
-    private int id;
+    private long id;
     private String name;
     private boolean publicView;
     private Collection<DishIngredient> dishes;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -63,5 +64,14 @@ public class Ingredient {
 
     public void setDishes(Collection<DishIngredient> dishes) {
         this.dishes = dishes;
+    }
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", publicView=" + publicView +
+                '}';
     }
 }
