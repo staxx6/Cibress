@@ -12,4 +12,6 @@ public interface DayEntryService {
     long newDishEntry(LocalDate date, User user, DayEntryDish dayEntryDish);
     long saveDayEntry(User user, DayEntryDto dayEntryDto);
     long saveDayEntryDish(User user, LocalDate localDate, DayEntryDishDto dayEntryDishDto);
+    boolean removeDishIngredient(User user, long dishIngredientId);
+    boolean removeDayEntryDish(User user, long dayEntryDish);
 }

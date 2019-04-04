@@ -416,19 +416,32 @@ body {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  grid-gap: 0.5rem;
+  height: 100%;
+  padding: 0.5rem;
 }
 .month__day {
-  width: 6rem;
-  height: 6rem;
+  min-width: 6rem;
+  width: 100%;
+  min-height: 6rem;
+  height: 100%;
+}
+.month__day-inner-container {
+  width: 100%;
+  height: 100%;
 }
 .month__day-number {
   display: inline-block;
-  right: 3px;
-  bottom: 3px;
+  margin: 1rem 1rem 1rem 1rem;
 }
-.month__day--today {
-  color: #27ff00;
-  font-weight: 700;
+.month__day-number, .month__day-number:link, .month__day-number:visited {
+  color: #000;
+  font-size: 1.8rem;
+  text-decoration: none;
+}
+.month__day-number-today {
+  color: #ff2626;
+  font-weight: bolder;
 }
 .month__day--0 {
   background-color: #e7e7e7;

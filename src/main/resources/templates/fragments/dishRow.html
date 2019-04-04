@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<li th:fragment="dishRow (id, dishEntry)" class="day__row">
+<li th:fragment="dishRow (id, dishEntry)" th:id="'dayRow-' + ${id}" class="day__row">
     <!-- dishTime- -->
     <input th:id="'dish-time-' + ${id}" class="day__entry-background day__row-time" value="22:38" th:name="'dishTime-' + ${id}"/>
 
@@ -33,14 +33,14 @@
     <input th:id="'dish-quantity-' + ${id}" class="day__entry-background day__row-quantity" th:value="${dishEntry.quantityIngredient}" />
     <input th:id="'dish-unit-' + ${id}" class="day__entry-background day__row-quantity-unit" th:value="${dishEntry.unit.name}" />
     <button class="btn btn--primary btn--primary--outline day__row-save" th:onclick="'saveDayDish(' + ${id} + ')'">&#10004</button>
-    <button class="day__background day__row-remove">x</button>
+    <button class="day__background day__row-remove" th:onclick="'removeDayEntryDish(' + ${id} + ')'" title="Remove dish">x</button>
 </li>
 
-<li th:fragment="ingredient (ingredientData)" class="day__ingredients-item">
+<li th:fragment="ingredient (ingredientData)" th:id="'dishIngredient-' + ${ingredientData.id}" class="day__ingredients-item">
     <input class="day__entry-background day__ingredients-item--quantity" th:value="${ingredientData.quantity}" />
     <input class="day__entry-background day__ingredients-item--quantity-unit" th:value="${ingredientData.unit.name}" />
     <input class="day__entry-background day__ingredients-item--name" th:value="${ingredientData.ingredient.name}" />
-    <button class="btn day__ingredients-item--remove">x</button>
+    <button class="btn day__ingredients-item--remove" th:onclick="'removeDishIngredient(' + ${ingredientData.id} + ')'" title="Remove Ingredient">x</button>
 </li>
 
 </html>

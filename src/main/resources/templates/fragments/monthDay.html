@@ -8,8 +8,10 @@
         + '&month=' + ${monthDay.getDate().getMonthValue()}
         + '&day=' + ${monthDay.getDate().dayOfMonth}
     }">
-        <span class="month__day-number" th:text="${monthDay.getDate().getDayOfMonth()}">1</span>
+        <div class="month__day-inner-container">
+            <span class="month__day-number" th:text="${monthDay.getDate().getDayOfMonth()}"
+                  th:classappend="${monthDay.today} ? 'month__day-number-today' : ''">1</span>
+        </div>
     </a>
 </li>
-
 </html>

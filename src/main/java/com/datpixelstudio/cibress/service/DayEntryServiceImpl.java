@@ -109,7 +109,6 @@ public class DayEntryServiceImpl implements DayEntryService {
         dayEntryDish.setDayEntry(dayEntry);
 
         // --- dayEntryDish
-        System.out.println("DayEntryService: " + dayEntryDish);
         dayEntryDishRepository.saveAndFlush(dayEntryDish);
 
         return dayEntryDish.getId();
@@ -133,8 +132,6 @@ public class DayEntryServiceImpl implements DayEntryService {
         // --- Save ingredients // TODO NO USER CHECK!
         if(dayEntryDishDto.getDishIngredientDtos() != null) {
             for(DishIngredientDto dishIngredientDto : dayEntryDishDto.getDishIngredientDtos()) {
-
-                System.out.println("Ingredient name: " + dishIngredientDto);
 
                 Ingredient ingredient = ingredientRepository.findByName(dishIngredientDto.getName());
 
@@ -162,7 +159,7 @@ public class DayEntryServiceImpl implements DayEntryService {
 
         for(Ingredient ingredient : dishIngredients) {
             DishIngredient dishIngredient = null;
-            try { // srsly bad
+            try { // TODO srsly bad
                 dishIngredient = dishIngredientRepository.findByDishAndIngredient(dish, ingredient);
             } catch (Exception ex) {
             }
@@ -194,9 +191,29 @@ public class DayEntryServiceImpl implements DayEntryService {
         return toSaveEntryDish.getId();
     }
 
-    @Deprecated
-    private LocalDate stringDateToLocalDate(String dateString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-yyyy");
-        return LocalDate.parse(dateString, formatter);
+    @Override
+    public boolean removeDishIngredient(User user, long dishIngredientId) {
+
+        Optional<DishIngredient> dishIngredient = dishIngredientRepository.findById(dishIngredientId);
+        if(dishIngredient.isPresent()) {
+            dishIngredientRepository.delete(dishIngredient.get());
+            return true;
+        } else {
+            System.out.println("Couldn't remove dishIngredient: " + dishIngredientId);
+            return false;
+        }
+    }
+
+    @Override
+    public boolean removeDayEntryDish(User user, long dayEntryDishId) {
+
+        Optional<DayEntryDish> dayEntryDish = dayEntryDishRepository.findById(dayEntryDishId);
+        if(dayEntryDish.isPresent()) {
+            dayEntryDishRepository.delete(dayEntryDish.get());
+            return true;
+        } else {
+            System.out.println("Couldn't remove dayEntryDish: " + dayEntryDishId);
+            return false;
+        }
     }
 }

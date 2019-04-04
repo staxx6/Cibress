@@ -38,15 +38,8 @@ public class HomeController {
 
         UserDto userDto = new UserDto();
 
-        // TODO: REMOVE TEST DATA
-//        userDto.setFirstName("first");
-//        userDto.setLastName("last");
-//        userDto.setEmail("first@first.com");
-//        userDto.setPassword("first");
-//        userDto.setMatchingPassword("first");
-
         model.addAttribute("user", userDto);
-        System.out.println("home() return index");
+//        System.out.println("home() return index");
         return "index";
     }
 
@@ -55,29 +48,29 @@ public class HomeController {
      * Routes just for learning purposes
      */
 
-    @GetMapping("/noSecurity")
-    public String noSecurity() {
-        return "noSecurity";
-    }
+//    @GetMapping("/noSecurity")
+//    public String noSecurity() {
+//        return "noSecurity";
+//    }
+//
+//    @GetMapping("/admin")
+//    public String admin() {
+//        return "admin";
+//    }
 
-    @GetMapping("/admin")
-    public String admin() {
-        return "admin";
-    }
+//    @GetMapping("/messages")
+//    public String listMessages(@AuthenticationPrincipal User user, Model model) {
+//        Iterable<Message> messages = messageRepository.findByUserId(user.getId());
+//        model.addAttribute("messages", messages);
+//        return "listMessages";
+//    }
 
-    @GetMapping("/messages")
-    public String listMessages(@AuthenticationPrincipal User user, Model model) {
-        Iterable<Message> messages = messageRepository.findByUserId(user.getId());
-        model.addAttribute("messages", messages);
-        return "listMessages";
-    }
-
-    @GetMapping("/messages/{id}")
-    public String viewMessage(@PathVariable Long id, Model model) {
-        Message message = messageRepository.findById(id).get();
-        model.addAttribute("message", message);
-        return "viewMessage";
-    }
+//    @GetMapping("/messages/{id}")
+//    public String viewMessage(@PathVariable Long id, Model model) {
+//        Message message = messageRepository.findById(id).get();
+//        model.addAttribute("message", message);
+//        return "viewMessage";
+//    }
 
 //    @GetMapping("/privateMessage/{id}")
 //    public String viewPrivateMessage(@PathVariable Long id, Model model) {

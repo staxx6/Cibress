@@ -95,6 +95,33 @@ function saveDayDish(id) {
     request.send(JSON.stringify(dayEntryDish));
 }
 
+// TODO in firefox it throws an XML error but works as intended
+function removeDishIngredient(id) {
+    let request = new XMLHttpRequest();
+    request.onreadystatechange = () => {
+        if(request.readyState === XMLHttpRequest.DONE) {
+            let rowToRemove = document.getElementById('dishIngredient-' + id);
+            let parent = rowToRemove.parentElement;
+            parent.removeChild(rowToRemove);
+        }
+    }
+    request.open('GET', 'http://localhost:8080/removeDishIngredient?dishIngredientId=' + id); // TODO change link
+    request.send();
+}
+
+function removeDayEntryDish(id) {
+    let request = new XMLHttpRequest();
+    request.onreadystatechange = () => {
+        if(request.readyState === XMLHttpRequest.DONE) {
+            let rowToRemove = document.getElementById('dayRow-' + id);
+            let parent = rowToRemove.parentElement;
+            parent.removeChild(rowToRemove);
+        }
+    }
+    request.open('GET', 'http://localhost:8080/removeDishRow?dayEntryDishId=' + id); // TODO change link
+    request.send();
+}
+
 // Open the registration popup if there was an error
 // let url = window.location.href.split("/")[window.location.href.split("/").length - 1];
 // console.log(url);
