@@ -146,8 +146,11 @@ public class DayEntryServiceImpl implements DayEntryService {
         }
 
         // --- Find Dish or create it // TODO NO USER CHECK!
-        Dish dish = dishRepository.findByName(dayEntryDishDto.getDishName());
-        if(dish == null) {
+        Dish dish;
+        Optional<Dish> optDish = dishRepository.findById(dayEntryDishDto.getId());
+        if(optDish.isPresent()) {
+            dish = optDish.get();
+        } else {
             dish = new Dish();
             dish.setName(dayEntryDishDto.getDishName());
             dish.setAnonymousComment(anonymousCommentRepository.findById(1L));

@@ -49,7 +49,12 @@ public class FragmentController {
         dayEntryDish.setUnit(unitRepository.findById(1L).get());
         dayEntryDish.setQuantityIngredient(1);
 
-        dayEntryDish.setDish(dishRepository.findById(1L).get());
+        Dish dish = new Dish();
+        dish.setPublicView(false);
+        dish.setName("New Dish");
+//        dish.set
+//        dishRepository.saveAndFlush(dish);
+        dayEntryDish.setDish(dish);
 
         long newId = dayEntryService.newDishEntry(sessionData.getLocalDate(), user, dayEntryDish);
 

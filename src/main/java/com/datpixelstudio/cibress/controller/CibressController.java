@@ -5,7 +5,6 @@ import com.datpixelstudio.cibress.dto.DayEntryDishDto;
 import com.datpixelstudio.cibress.dto.DayEntryDto;
 import com.datpixelstudio.cibress.entity.User;
 import com.datpixelstudio.cibress.service.DayEntryService;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
